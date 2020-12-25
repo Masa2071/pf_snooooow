@@ -1,0 +1,51 @@
+<div class="profile">
+  <%= form_with model:@user, url: user_path(current_user), local:true do |f| %>
+    <div class="field">
+      <%= f.label :ニックネーム %><br/>
+      <%= f.text_field :name %><br/>
+    </div>
+
+    <div class="field">
+      <%= f.label :プロフィール画像 %><br/>
+      <%= f.attachment_field :profile_image %><br/>
+    </div>
+
+    <div class="field">
+      性別
+      <div class="radio-inline">
+        <%= f.radio_button :sex, :非公開, checked: "checked" %>
+        <%= f.label :非公開 %>
+      </div>
+      <div class="radio-inline">
+        <%= f.radio_button :sex, :男性 %>
+        <%= f.label :男性, class: "job_type_label" %>
+      </div>
+      <div class="radio-inline">
+        <%= f.radio_button :sex, :女性 %>
+        <%= f.label :女性, class: "job_type_label" %>
+      </div>
+    </div>
+
+    <div class="field">
+      スタイル
+      <div class="radio-inline">
+        <%= f.radio_button :style, :スノーボーダー, checked: "checked" %>
+        <%= f.label :スノーボーダー %>
+      </div>
+      <div class="radio-inline">
+        <%= f.radio_button :style, :スキーヤー %>
+        <%= f.label :スキーヤー, class: "job_type_label" %>
+      </div>
+      <div class="radio-inline">
+        <%= f.radio_button :style, :その他 %>
+        <%= f.label :その他, class: "job_type_label" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :自己紹介文 %>
+      <%= f.text_area :introduction %>
+    </div>
+    <%= f.submit '保存' %>
+  <% end %>
+</div>
