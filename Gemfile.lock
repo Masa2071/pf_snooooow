@@ -293,7 +293,9 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
+
   pry-byebug
+
   puma (~> 3.11)
   rails (~> 5.2.4)
   refile!

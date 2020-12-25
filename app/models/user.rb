@@ -59,4 +59,5 @@ class User < ApplicationRecord
 
   enum sex: { "非公開" =>0, "男性" =>1, "女性" =>2 }
   enum style: { "スノーボーダー" =>0, "スキーヤー" =>1, "その他" =>2 }
+
 end
