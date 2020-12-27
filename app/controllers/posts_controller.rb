@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new()
     @user = @post.user
   end
 
@@ -20,5 +21,9 @@ class PostsController < ApplicationController
   # ストロングパラメータ
   def post_params
     params.require(:post).permit(:content, :post_image)
+  end
+
+  def post_comment_params
+    params.require(:post_comment).permit(:content, :image)
   end
 end

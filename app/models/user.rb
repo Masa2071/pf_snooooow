@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :sns_credentials, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   attachment :profile_image
 
