@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :users
-  resources :posts
+  resources :posts do
+    resources :post_comments, only: [:create, :destroy]
+  end
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     # if resource.sign_in_count == 1
     #     user_path(current.id)
     # else
-        posts_path
+        edit_user_path(current_user)
     # end
   end
 
