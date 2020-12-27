@@ -1,0 +1,9 @@
+<h1>マイページ</h1>
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
+<%= @user.name %>
+<%= @user.birthday %><!--計算して年齢を出す-->
+<%= @user.sex %>
+<%= @user.style %>
+<%= @user.introduction %>
+
+<%= link_to 'プロフィール編集', edit_user_path(@user) %>
