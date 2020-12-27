@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+
+  require 'happybirthday'
+
   def show
     @user = User.find(params[:id])
+     birthday = Happybirthday.born_on(current_user.birthday)
+    @user.birthday = birthday.age.years_old
   end
 
   def edit

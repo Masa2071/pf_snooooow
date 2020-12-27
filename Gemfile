@@ -73,3 +73,10 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
 gem 'pry-byebug'
+
+gem 'rails-i18n'
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
+gem 'happybirthday' #年月日から年齢を算出

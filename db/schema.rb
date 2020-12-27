@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_25_202737) do
+ActiveRecord::Schema.define(version: 2020_12_26_073310) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_12_25_202737) do
     t.integer "style", default: 0, null: false
     t.date "birthday"
     t.integer "sex", default: 0, null: false
-    t.string "profile_image_id", default: "0", null: false
+    t.string "profile_image_id"
     t.text "introduction", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

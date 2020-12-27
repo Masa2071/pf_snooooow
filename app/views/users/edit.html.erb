@@ -5,9 +5,15 @@
       <%= f.text_field :name %><br/>
     </div>
 
+    <div>
+      <%= f.label :プロフィール画像 %>
+      <%= f.attachment_field :profile_image %>
+    </div>
+
     <div class="field">
       <%= f.label :生年月日 %>
-      <%= f.date_select :生年月日, brithday: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1997, 1, 1) %>
+      <%= f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1997, 1, 1) %>
+
     </div>
 
     <div class="field">
