@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
      birthday = Happybirthday.born_on(current_user.birthday)
     @user.birthday = birthday.age.years_old
+    @posts = @user.posts
   end
 
   def edit
@@ -31,6 +32,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-     params.require(:user).permit(:name, :profile_image_id, :style, :birthday, :sex, :introduction)
+     params.require(:user).permit(:name, :profile_image, :style, :birthday, :sex, :introduction)
   end
 end
