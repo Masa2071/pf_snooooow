@@ -1,0 +1,39 @@
+<div>
+  <div>
+    <%= link_to user_path(@user) do %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
+      <%= @user.name %>
+    <% end %>
+  </div>
+  <div>
+    <%= attachment_image_tag @post, :post_image, :fill, 100, 100, size: '100x100', format: 'jpeg' %>
+    <%= @post.content %>
+  </div>
+</div>
+
+<div>
+  <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+    <%= f.attachment_field :image %>
+    <%= f.text_area :content, placeholder: "コメントを入力" %>
+    <%= f.submit 'コメント送信' %>
+  <% end %>
+</div>
+
+<div>
+  <% @post.post_comments.each do |post_comment| %>
+    <div>
+        <%= attachment_image_tag post_comment.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
+        <%= post_comment.user.name %>
+    </div>
+    <div>
+      <%= attachment_image_tag post_comment, :image, :fill, 50, 50, format: 'jpeg' %>
+      <%= post_comment.content %>
+      <% if post_comment.user == current_user %>
+        <div>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'ホーム', posts_path %>

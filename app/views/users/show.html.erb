@@ -1,0 +1,22 @@
+<h1>マイページ</h1>
+  <div class="user-profile">
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
+    <%= @user.name %>
+    <%= @user.birthday %><!--計算して年齢を出す-->
+    <%= @user.sex %>
+    <%= @user.style %>
+    <%= @user.introduction %>
+    <%= link_to 'プロフィール編集', edit_user_path(@user) %>
+  </div>
+  <% @posts.each do |post| %>
+    <div class="user-post">
+      <%= link_to post_path(post) do %>
+        <%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpeg' %>
+        <%= post.content %>
+      <% end %>
+    </div>
+  <% end %>
+
+<div class="sidebar">
+  <%= link_to 'ホーム', posts_path %>
+</div>
