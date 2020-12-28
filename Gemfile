@@ -80,3 +80,5 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 gem 'happybirthday' #年月日から年齢を算出
+
+gem 'font-awesome-sass'
