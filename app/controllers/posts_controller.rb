@@ -16,6 +16,12 @@ class PostsController < ApplicationController
     @post_comment = PostComment.new()
     @user = @post.user
   end
+  
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to request.referer
+  end 
 
   private
   # ストロングパラメータ

@@ -4,12 +4,30 @@ class User < ApplicationRecord
   has_many :sns_credentials, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   attachment :profile_image
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
+
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :followings, through: :relationships, source: :followed
+
+  def follow(user_id) #フォローする
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id) #フォローを外す
+    relationships.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user) #フォローしていればtrue
+    followings.include?(user)
+  end
 
   def self.without_sns_data(auth)
     user = User.where(email: auth.info.email).first
