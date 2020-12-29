@@ -8,6 +8,7 @@
       <% else %>
         <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
       <% end %>
+      <%= link_to 'chatを始める', chat_path(@user)%>
     <% else %>
       <%= link_to 'プロフィール編集', edit_user_path(@user) %>
     <% end %>
