@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-10 offset-xs-1">
+    <h3><%= @event.title %></h3>
+
+    <div>
+      <span>出発予定日時</span><%= @event.etd.strftime("%Y/%m/%d/%H:%M") %>
+    </div>
+    <div>
+      <span>帰宅予定日時</span><%= @event.eta.strftime("%Y/%m/%d/%H:%M") %>
+    </div>
+    <div>
+      <span>申込締切日時</span><%= @event.preiod.strftime("%Y/%m/%d/%H:%M") %>
+    </div>
+    <div>
+      <span>目的地</span><%= @event.destination %>
+    </div>
+    <div>
+      <span>募集人数</span><%= @event.recruitment %>
+    </div>
+    <div>
+      <span>費用</span><%= @event.cost %>
+    </div>
+    <div>
+      <span>詳細</span><%= @event.content %>
+    </div>
+
+  </div>
+</div>

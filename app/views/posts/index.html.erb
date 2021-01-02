@@ -1,7 +1,9 @@
 <div class="side-bar">
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <%= link_to 'マイページ', user_path(current_user) %>
-  イベント作成
+  <%= link_to 'イベント作成', new_event_path %>
+  <%= link_to 'イベント一覧', events_path %>
+
   <%= link_to 'DM一覧', rooms_path %>
 </div>
 

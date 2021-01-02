@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_102710) do
+ActiveRecord::Schema.define(version: 2021_01_02_125437) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 2021_01_02_102710) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "etd", null: false
+    t.datetime "eta", null: false
+    t.datetime "preiod", null: false
+    t.integer "recruitment", null: false
+    t.string "cost"
+    t.string "destination"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|

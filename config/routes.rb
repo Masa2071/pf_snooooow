@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :rooms, only: [:create, :show, :index]
   get 'chat/:id' => 'chats#show', as: 'chat'
   resources :chats, only: [:create]
+  resources :events
 end

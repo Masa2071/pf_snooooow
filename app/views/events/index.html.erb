@@ -1,0 +1,11 @@
+イベント一覧
+<% @events.each do |event| %>
+  <%= link_to event_path(event) do %>
+    <%= event.title %>
+  <% end %>
+  <%= link_to user_path(event) do %>
+    <%= attachment_image_tag event.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
+    <%= event.user.name %>
+  <% end %>
+  <%= event.etd.strftime("%Y-%m-%d") %>
+<% end %>
