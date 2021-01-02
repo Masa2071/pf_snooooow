@@ -82,3 +82,6 @@ gem 'devise-i18n-views'
 gem 'happybirthday' #年月日から年齢を算出
 
 gem 'font-awesome-sass'
+
+gem 'bootstrap', '~> 4.5.3'
+gem 'jquery-rails'

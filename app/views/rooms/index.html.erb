@@ -1,0 +1,13 @@
+<div class="side-bar">
+
+</div>
+<div class="">
+  <% @rooms.each do |room| %>
+    <% room.chats.each do |user| %>
+      <%= user.user.name %>
+    <% end %>
+  <% end %>
+</div>
+
+
+

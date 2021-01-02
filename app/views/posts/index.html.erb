@@ -2,26 +2,20 @@
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <%= link_to 'マイページ', user_path(current_user) %>
   イベント作成
-  投稿フォーム
+  <%= link_to 'DM一覧', rooms_path %>
 </div>
 
 
 <div class="main">
 
   <div class="">
-    <%= form_with model:@post, local:true do |f| %>
-      <%= f.label :post_image do%>
-      <i class="fas fa-camera"></i>
-      <% end %>
-      <%= f.attachment_field :post_image, class: "image" %>
-
-      <%= f.text_area :content %>
-      <%= f.submit '投稿する' %>
-    <% end %>
+    <!--投稿フォーム-->
+    <%= render '/posts/form', post: @post %>
   </div>
 
   <div class="">
     <h1>最新の投稿</h1>
+    <!--投稿一覧-->
       <%= render '/posts/index', posts: @posts %>
   </div>
 </div>

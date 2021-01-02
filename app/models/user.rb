@@ -17,8 +17,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
 
-  has_many :user_rooms
-  has_many :chats
+  has_many :entries, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   def follow(user_id) #フォローする
     relationships.create(followed_id: user_id)
@@ -30,6 +30,10 @@ class User < ApplicationRecord
 
   def following?(user) #フォローしていればtrue
     followings.include?(user)
+  end
+
+  def active_for_authentication? #退会済みなら弾く
+    super && (self.is_delete == false)
   end
 
   def self.without_sns_data(auth)
