@@ -32,20 +32,6 @@
 </div>
 
 <div>
-  <% @post.post_comments.each do |post_comment| %>
-    <div>
-        <%= attachment_image_tag post_comment.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
-        <%= post_comment.user.name %>
-    </div>
-    <div>
-      <%= attachment_image_tag post_comment, :image, :fill, 50, 50, format: 'jpeg' %>
-      <%= post_comment.content %>
-      <% if post_comment.user == current_user %>
-        <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'posts/post_comments', post: @post %>
 </div>
 <%= link_to 'ホーム', posts_path %>

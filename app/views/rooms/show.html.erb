@@ -1,0 +1,14 @@
+<div class="side-bar">
+  <%= link_to 'ホーム', posts_path %>
+</div>
+<h4>メッセージ</h4>
+
+<hr>
+<div class="chats">
+  <div class="chat">
+    <%= render 'rooms/chat', messages: @messages %>
+  </div>
+  <div class="posts">
+    <%= render 'rooms/form', message: @message %>
+  </div>
+</div>
