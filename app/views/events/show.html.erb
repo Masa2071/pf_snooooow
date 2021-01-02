@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-10 offset-xs-1">
     <h3><%= @event.title %></h3>
-
     <div>
+       <div>
       <span>出発予定日時</span><%= @event.etd.strftime("%Y/%m/%d/%H:%M") %>
     </div>
     <div>
@@ -23,6 +23,18 @@
     <div>
       <span>詳細</span><%= @event.content %>
     </div>
+  </div>
+
+  <div>
+    <%= form_with(model:[@event, @event_comment], local: true) do |f| %>
+      <%= f.text_area :content, placeholder: "コメントを入力" %>
+      <%= f.submit 'コメント送信' %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= render '/events/event_comments', event: @event %>
+  </div>
 
   </div>
 </div>
