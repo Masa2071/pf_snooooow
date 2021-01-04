@@ -70,7 +70,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
-gem 'dotenv-rails'
 
 gem 'pry-byebug'
 
@@ -85,3 +84,5 @@ gem 'font-awesome-sass'
 
 gem 'bootstrap', '~> 4.5.3'
 gem 'jquery-rails'
+
+gem 'dotenv-rails'

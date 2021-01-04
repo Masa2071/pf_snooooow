@@ -1,37 +1,39 @@
 <% @posts.each do |post| %>
   <!--プロフィール部分-->
-  <div class="">
-	  <%= link_to user_path(post.user_id) do %>
-	    <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
-	    <%= post.user.name %>
-	  <% end %>
-	
+  <div>
+  	<div class="profile mb-3">
+		  <%= render 'posts/profile', post: post %>
+		</div>
 	  <!--投稿画像と内容-->
-	  <%= link_to post_path(post) do %>
-	    <%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpeg' %>
-	    <%= post.content %>
-	  <% end %>  
+	  <div class="post">
+	  	<%= link_to post_path(post), class: "post-content" do %>
+	  		<p class="post-image"><%= attachment_image_tag post, :post_image, :fill, 200, 200, format: 'jpeg' %></p>
+		  	<p class="post-text mt-3 ml-3"><%= post.content %></p>
+		  <% end %>
+	  </div>
 	  <!--いいね-->
 	  <% if post.favorited_by?(current_user) %>
-		  <%= link_to post_favorites_path(post), method: :delete do %>
-		    <i class="fa fa-heart favorite-btn"></i>
+		  <%= link_to post_favorites_path(post), class: 'btn', method: :delete do %>
+		    <i class="fa fa-heart favorite-btn ml-2"></i>
 		    <%= post.favorites.count %>
 		  <% end %>
 		<% else %>
-		  <%= link_to post_favorites_path(post), method: :post do %>
-		    <i class="fa fa-heart unfavorite-btn"></i>
+		  <%= link_to post_favorites_path(post), class: 'btn', method: :post do %>
+		    <i class="fa fa-heart unfavorite-btn ml-2"></i>
 		    <%= post.favorites.count %>
 		  <% end %>
 		<% end %>
 		<!--こめんと-->
-		<%= link_to post_path(post) do %>
-		  <i class="far fa-comment-dots"></i><%= post.post_comments.count %>
-	  <% end %> 
+		<%= link_to post_path(post), class: 'btn' do %>
+		  <i class="far fa-comment-dots ml-2"></i>
+		 	<%= post.post_comments.count %>
+	  <% end %>
 		<!--削除アイコン-->
 		<% if post.user_id == current_user.id %>　<!--投稿者本人なら削除-->
-			<%= link_to  post_path(post), method: :delete do %>
-			  <i class="fas fa-trash-alt"></i>
+			<%= link_to  post_path(post), class: 'btn', method: :delete do %>
+			  <i class="fas fa-trash-alt delete-btn"></i>
 			<% end %>
 		<% end %>
   </div>
+  <hr>
 <% end %>

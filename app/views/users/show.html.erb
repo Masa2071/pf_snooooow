@@ -1,47 +1,75 @@
-<h1>マイページ</h1>
-  <div class="profile">
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
-    <p><%= @user.name %></p>
-    <% if current_user != @user %>
-        <% if current_user.following?(@user) %>
-          <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete %>
-        <% else %>
-          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
-        <% end %>
-      <%= render '/users/chat', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
-    <% else %>
-      <%= link_to 'プロフィール編集', edit_user_path(@user) %>
-    <% end %>
-    <p><%= @user.birthday %>歳<!--計算して年齢を出す--></p>
-    <p><%= @user.sex %></p>
-    <p><%= @user.style %></p>
-    <p><%= @user.introduction %></p>
-
-    <p>フォロー</p>
-    <%= link_to @user.followings.count, user_followings_path(@user) %>
-    <p>フォロワー</p>
-    <%= link_to @user.followers.count, user_followers_path(@user) %>
-
-
+<div class="row">
+  <div class="col-sm-3">
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'ホーム', posts_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'イベント作成', new_event_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'イベント一覧', events_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'DM一覧', rooms_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
   </div>
+  <div class="col-sm-9 mt-5">
+    <div class="profile-show">
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg', class: "rounded-circle" %>
+      <span class="name ml-3 mt-2 user-show-name"><%= @user.name %></span>
+      <span class="ml-3 font-s"><%= @user.birthday %>歳</span>
+      <span class="ml-2 font-s"><%= @user.sex %></span>
+    </div>
+
+    <div class="follow-form">
+    <% if current_user != @user %>
+
+       <% if current_user.following?(@user) %>
+        <%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-secondary mt-3" %>
+      <% else %>
+        <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn btn-outline-success mt-3" %>
+      <% end %>
+    <%= render '/users/chat', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
+      <% else %>
+      <%= link_to edit_user_path(@user) do %>
+        <i class="fas fa-user-cog mt-3">プロフィール編集</i>
+      <%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+      <% end %>
+    <% end %>
+    </div>
+
+    <hr>
+
+    <div>
+      <%= link_to user_followings_path(@user), class: "btn" do %>
+        <span class="follow-text"><%= @user.followings.count %></span>
+        <span class="follow-text">フォロー</span>
+      <% end %>
+
+      <%= link_to user_followers_path(@user), class: "btn" do  %>
+        <span class="follow-text"><%= @user.followers.count %></span>
+        <span class="follow-text">フォロワー</span>
+      <% end %>
+    </div>
+    <hr>
+
+      <h4>スタイル</h4>
+      <p class="ml-3"><%= @user.style %></p>
+
+    <hr>
+
+      <h4>自己紹介</h4>
+      <p class="ml-3"><%= @user.introduction %></p>
+
+
+    <hr>
+
 
 
   投稿
-  <div>
-    <% @posts.each do |post| %>
-      <div class="user-post">
-        <%= link_to post_path(post) do %>
-          <%= attachment_image_tag post, :post_image, :fill, 100, 100, format: 'jpeg' %>
-          <%= post.content %>
-        <% end %>
-      </div>
-    <% end %>
+  <% @posts.each do |post| %>
+    <div>
+      <%= link_to post_path(post) do %>
+        <p class="post-image"><%= attachment_image_tag post, :post_image, :fill, 150, 150, format: 'jpeg' %></p>
+		  	<p class="post-text mt-3 ml-3"><%= post.content %></p>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+
+
   </div>
-
-<div class="sidebar">
-  <%= link_to 'ホーム', posts_path %>
 </div>
-
-<% if user_signed_in? && @user.id == current_user.id %>
-  <%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-<% end %>
