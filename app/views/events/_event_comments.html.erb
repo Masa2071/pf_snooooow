@@ -1,0 +1,14 @@
+<% event.event_comments.each do |event_comment| %>
+  <div>
+      <%= attachment_image_tag event_comment.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
+      <%= event_comment.user.name %>
+  </div>
+  <div>
+    <%= event_comment.content %>
+    <% if event_comment.user == current_user %>
+      <%= link_to event_event_comment_path(event_comment.event, event_comment), method: :delete do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

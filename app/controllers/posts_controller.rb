@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @post = Post.new
     @posts = Post.all
@@ -15,15 +15,15 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_comment = PostComment.new()
+    @post_comment = PostComment.new
     @user = @post.user
   end
-  
+
   def destroy
     post = Post.find(params[:id])
     post.destroy
     redirect_to request.referer
-  end 
+  end
 
   private
   # ストロングパラメータ

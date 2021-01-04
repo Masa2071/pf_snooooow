@@ -1,25 +1,30 @@
-<div class="side-bar">
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <%= link_to 'マイページ', user_path(current_user) %>
-  イベント作成
-  <%= link_to 'DM一覧', rooms_path %>
-</div>
+<div class="row">
 
-
-<div class="main">
-
-  <div class="">
-    <!--投稿フォーム-->
-    <%= render '/posts/form', post: @post %>
+  <div class="col-sm-3 side-bar">
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'マイページ', user_path(current_user) %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'イベント作成', new_event_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'イベント一覧', events_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to 'DM一覧', rooms_path %></span>
+    <span class="btn btn-outline-primary mb-3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
   </div>
 
-  <div class="">
-    <h1>最新の投稿</h1>
-    <!--投稿一覧-->
-      <%= render '/posts/index', posts: @posts %>
+
+  <div class="col-sm-9 main">
+
+    <div class="post-form">
+      <!--投稿フォーム-->
+      <%= render '/posts/form', post: @post %>
+    </div>
+
+  <hr style="height:2px; background-color:#808080;">
+
+    <div class="posts">
+      <h1>最新の投稿</h1>
+      <!--投稿一覧-->
+        <%= render '/posts/index', posts: @posts %>
+    </div>
   </div>
+
 </div>
-
-
 
 

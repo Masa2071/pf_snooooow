@@ -1,4 +1,4 @@
-<%= link_to user_path(post.user_id) do %>
-  <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
-  <%= post.user.name %>
+<%= link_to user_path(post.user_id), class: "btn" do %>
+  <%= attachment_image_tag post.user, :profile_image, :fill, 70, 70, fallback: 'no_image.jpg', size: '70x70', format: 'jpeg', class: "rounded-circle" %>
+  <span class="name ml-3"><%= post.user.name %></span>
 <% end %>
