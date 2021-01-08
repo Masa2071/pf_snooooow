@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all
+    @current_user = current_user
   end
 
   def create
@@ -17,11 +18,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @user = @post.user
+    @current_user = current_user
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
+    @post = Post.find(params[:id])
+    @post.destroy
     redirect_to request.referer
   end
 

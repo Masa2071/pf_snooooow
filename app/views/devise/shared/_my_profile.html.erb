@@ -1,0 +1,6 @@
+<div class="current-user-profile">
+  <%= link_to user_path(current_user), class: "btn left-btn" do %>
+    <%= attachment_image_tag current_user, :profile_image, size: "50x50", fallback: 'no_image.jpg', format: 'jpeg',  class: "rounded-circle" %>
+    <span class="name-position"><%= current_user.name %></span>
+  <% end %>
+</div>

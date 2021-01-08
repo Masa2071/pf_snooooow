@@ -20,7 +20,6 @@
 * {
   box-sizing: border-box;
   margin: 0 auto;
-  text-decoration: none;
 }
 
 hr {
@@ -28,9 +27,10 @@ hr {
   color: red;
 }
 
-.btn-outline-primary {
-    display: block;
+.side-btn {
     width: 70%;
+    text-align: left;
+
 }
 
 .login-field {
@@ -71,8 +71,72 @@ hr {
 
 .fa-comments {
   font-size: 40px;
-  color: #FF99FF;
+  color: #5D99FF;
   position: absolute;
   left: 130px;
   top: 13px;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+}
+
+.fa-trash-alt {
+  color: black;
+}
+
+.left-line {
+  border: solid #EEFFFF;
+  border-width: 0px 2px;
+}
+
+.side-bar {
+  margin-top: 250px;
+  position: sticky;
+  top: 20px;
+}
+
+.main {
+  border: solid #EEFFFF;
+  border-width: 0px 2px;
+}
+
+.current-user-profile {
+  margin-top: 100px;
+  position: relative;
+  background-color: #EEFFFF;
+}
+
+.name-position {
+  position: absolute;
+  top: 10px;
+  left: 60px;
+}
+.profile-index {
+  position: relative;
+}
+
+.profile-name-position {
+  position: absolute;
+  top: 10px;
+  left: 80px;
+}
+
+.left-btn {
+  width: 100%;
+  text-align: left;
+  padding-left: 0;
+}
+
+.right-bar {
+  height: calc(100vh - 48px);
+  overflow: scroll;
+}
+
+.comment-form {
+  position: sticky;
+  top: 0;
+  background-color : #FFFFFF;
+  z-index: 1;
 }

@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.image {
+.image-camera {
   display: none;
 }
 
@@ -13,12 +13,7 @@
 
 .post-btn {
   width: 20%;
-
-}
-
-.post-form {
-  width: 700px;
-  margin: 0 auto;
+  text-align: center;
 }
 
 .post-image {
@@ -27,8 +22,13 @@
 .post-text {
   color: black;
 }
-.post .post-content {
+.post-contents-index .post-content {
   text-decoration: none;
 }
 
+
+.post-comment-btn {
+  width: 30%;
+  text-align: center;
+}
 
