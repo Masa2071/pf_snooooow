@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  require 'happybirthday'
+
   def new
     @event = Event.new
   end
@@ -13,6 +15,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @current_user = current_user
   end
 
   def show

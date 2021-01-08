@@ -1,39 +1,11 @@
-<% @posts.each do |post| %>
-  <!--プロフィール部分-->
-  <div>
-  	<div class="profile mb-3">
-		  <%= render 'posts/profile', post: post %>
-		</div>
-	  <!--投稿画像と内容-->
-	  <div class="post">
-	  	<%= link_to post_path(post), class: "post-content" do %>
-	  		<p class="post-image"><%= attachment_image_tag post, :post_image, :fill, 200, 200, format: 'jpeg' %></p>
-		  	<p class="post-text mt-3 ml-3"><%= post.content %></p>
-		  <% end %>
-	  </div>
-	  <!--いいね-->
-	  <% if post.favorited_by?(current_user) %>
-		  <%= link_to post_favorites_path(post), class: 'btn', method: :delete do %>
-		    <i class="fa fa-heart favorite-btn ml-2"></i>
-		    <%= post.favorites.count %>
-		  <% end %>
-		<% else %>
-		  <%= link_to post_favorites_path(post), class: 'btn', method: :post do %>
-		    <i class="fa fa-heart unfavorite-btn ml-2"></i>
-		    <%= post.favorites.count %>
-		  <% end %>
-		<% end %>
-		<!--こめんと-->
-		<%= link_to post_path(post), class: 'btn' do %>
-		  <i class="far fa-comment-dots ml-2"></i>
-		 	<%= post.post_comments.count %>
-	  <% end %>
-		<!--削除アイコン-->
-		<% if post.user_id == current_user.id %>　<!--投稿者本人なら削除-->
-			<%= link_to  post_path(post), class: 'btn', method: :delete do %>
-			  <i class="fas fa-trash-alt delete-btn"></i>
-			<% end %>
-		<% end %>
-  </div>
-  <hr>
-<% end %>
+<!--プロフィール部分-->
+<div class="profile-index mb-3">
+  <%= render 'posts/profile', post: post %>
+</div>
+<!--投稿画像と内容-->
+<div class="post-contents-index">
+	<%= render 'posts/contents', post: post %>
+</div>
+<div id="bottons_<%= post.id %>">
+  <%= render 'posts/icon', post: post %>
+</div>

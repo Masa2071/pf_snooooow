@@ -1,40 +1,55 @@
 <div class="row">
-  <div class="col-xs-10 offset-xs-1">
-    <h3><%= @event.title %></h3>
-    <div>
-       <div>
-      <span>出発予定日時</span><%= @event.etd.strftime("%Y/%m/%d/%H:%M") %>
-    </div>
-    <div>
-      <span>帰宅予定日時</span><%= @event.eta.strftime("%Y/%m/%d/%H:%M") %>
-    </div>
-    <div>
-      <span>申込締切日時</span><%= @event.preiod.strftime("%Y/%m/%d/%H:%M") %>
-    </div>
-    <div>
-      <span>目的地</span><%= @event.destination %>
-    </div>
-    <div>
-      <span>募集人数</span><%= @event.recruitment %>
-    </div>
-    <div>
-      <span>費用</span><%= @event.cost %>
-    </div>
-    <div>
-      <span>詳細</span><%= @event.content %>
+  <div class="col-sm-3 left-line">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
     </div>
   </div>
-
-  <div>
-    <%= form_with(model:[@event, @event_comment], local: true) do |f| %>
-      <%= f.text_area :content, placeholder: "コメントを入力" %>
-      <%= f.submit 'コメント送信' %>
-    <% end %>
+  <div class="col-sm-6 main">
+    <h4><%= @event.title %></h4>
+    <div>
+      <hr>
+      <div>
+        <span class="font-weight-bold mr-2">出発予定日時:</span><%= @event.etd.strftime("%Y/%m/%d/%H:%M") %>
+      </div>
+      <hr>
+      <div>
+        <span class="font-weight-bold mr-2">帰宅予定日時:</span><%= @event.eta.strftime("%Y/%m/%d/%H:%M") %>
+      </div>
+      <hr>
+      <div>
+        <span class="font-weight-bold mr-2">申込締切日時:</span><%= @event.preiod.strftime("%Y/%m/%d/%H:%M") %>
+      </div>
+      <hr>
+      <div>
+        <span class="font-weight-bold mr-2">目的地:</span><%= @event.destination %>
+      </div>
+      <hr>
+      <div>
+        <span class="font-weight-bold mr-2">募集人数:</span><%= @event.recruitment %>人
+      </div>
+      <hr>
+      <div>
+        <span class="font-weight-bold mr-2">費用¥:</span><%= @event.cost %>
+      </div>
+      <hr>
+      <div>
+        <span class="font-weight-bold">詳細</span>
+        <p><%= @event.content %></p>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= render '/events/event_comments', event: @event %>
-  </div>
-
+  <div class="col-sm-3 right-bar">
+    <div class="comment-form pb-2">
+      <%= form_with(model:[@event, @event_comment], local: true) do |f| %>
+        <%= f.text_area :content, placeholder: "コメントを入力", class: 'content' %>
+        <div  class="text-right">
+          <%= f.submit('送信', class: "btn  btn-outline-primary post-comment-btn rounded-pill mt-1") %>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+    <div>
+      <%= render '/events/event_comments', event: @event %>
+    </div>
   </div>
 </div>

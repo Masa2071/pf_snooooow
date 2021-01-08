@@ -1,46 +1,47 @@
-イベント作成
-<%= form_with model: @event, local:true do |f| %>
-  <div class="file">
-    <%= f.label :タイトル %>
-    <%= f.text_field :title %>
+<div class="row">
+  <div class="col-sm-3 left-line">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+    </div>
   </div>
-
-  <div class="file">
-    <%= f.label :詳細 %>
-    <%= f.text_field :content %>
+  <div class="col-sm-9 mb-5 main">
+    イベント作成
+    <%= form_with model: @event, local:true do |f| %>
+      <div class="filed mt-3">
+        <%= f.label :タイトル %><br>
+        <%= f.text_field :title, placeholder: "タイトル", class: "event-filed" %>
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :詳細 %><br>
+        <%= f.text_area :content, placeholder: "入力してください", class: "event-filed", rows: 7 %>
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :出発予定日時 %><br>
+        <%= f.datetime_field :etd %>
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :帰宅予定日時 %><br>
+        <%= f.datetime_field :eta %>
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :申込締切 %><br>
+        <%= f.datetime_field :preiod %>
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :募集人数 %><br>
+        <%= f.select :recruitment, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], class: "event-filed" %>人
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :費用 %><br>
+        <%= f.text_field :cost, placeholder: "0円", class: "event-filed" %>
+      </div>
+      <div class="filed mt-3">
+        <%= f.label :目的地 %><br>
+        <%= f.text_field :destination, placeholder: "野沢温泉スキー場、白馬八方尾根スキー場、苗場スキー場", class: "event-filed" %>
+      </div>
+      <div class="filed mt-3 text-left">
+        <%= f.submit '作成', class: "btn btn-primary event-filed" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="file">
-    <%= f.label :出発予定日時 %>
-    <%= f.datetime_field :etd %>
-  </div>
-
-  <div class="file">
-    <%= f.label :帰宅予定日時 %>
-    <%= f.datetime_field :eta %>
-  </div>
-
-  <div class="file">
-    <%= f.label :申込締切 %>
-    <%= f.datetime_field :preiod %>
-  </div>
-
-  <div class="file">
-    <%= f.label :募集人数 %>
-    <%= f.select :recruitment, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] %>
-  </div>
-
-  <div class="file">
-    <%= f.label :費用 %>
-    <%= f.text_field :cost %>
-  </div>
-
-  <div class="file">
-    <%= f.label :目的地 %>
-    <%= f.text_field :destination %>
-  </div>
-
-   <div class="file">
-    <%= f.submit '作成' %>
-  </div>
-<% end %>
+</div>

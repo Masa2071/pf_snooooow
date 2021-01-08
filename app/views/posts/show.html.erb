@@ -1,37 +1,43 @@
-<div>
-  <div>
-    <%= link_to user_path(@user) do %>
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
-      <%= @user.name %>
-    <% end %>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+      <%= render "devise/shared/my_profile", current_user: @current_user %>
+    </div>
   </div>
-  <div>
-    <%= attachment_image_tag @post, :post_image, :fill, 100, 100, size: '100x100', format: 'jpeg' %>
-    <% if @post.favorited_by?(current_user) %>
-			  <%= link_to post_favorites_path(@post), method: :delete do %>
-			    <i class="fa fa-heart favorite-btn"></i>
-			    <%= @post.favorites.count %>
-			  <% end %>
-			<% else %>
-			  <%= link_to post_favorites_path(@post), method: :post do %>
-			    <i class="fa fa-heart unfavorite-btn"></i>
-			    <%= @post.favorites.count %>
-			  <% end %>
-			<% end %>
-		<i class="far fa-comment-dots"></i><%= @post.post_comments.count %>
-    <%= @post.content %>
+  <div class="col-sm-6 post-comment main">
+    <div class="post-show-profile">
+      <!--プルフィール-->
+      <%= render 'users/profile', user: @user %>
+    </div>
+    <div class="mt-4 text-center">
+      <%= attachment_image_tag @post, :post_image, size: '500', format: 'jpeg', class: "img" %>
+    </div>
+    <div id="bottons_<%= @post.id %>"><!--あいこん-->
+  		 <%= render 'posts/icon' ,post: @post %>
+    </div>
+    <div>
+      <%= @post.content %>
+    </div>
+  </div>
+  <div class="col-sm-3 right-bar">
+    <div class="comment-form pb-2">
+      <%= form_with model:[@post, @post_comment] do |f| %>
+        <%= f.label :image do%>
+        <i class="fas fa-camera"></i>
+        <% end %>
+        <%= f.attachment_field :image, class: "image-camera" %>
+        <%= f.text_area :content, placeholder: "コメントを入力", class: 'content' %>
+      <div class="text-right">
+        <%= f.submit('送信', class: "btn  btn-outline-primary post-comment-btn rounded-pill mt-1") %>
+      </div>
+      <% end %>
+    </div>
+  <hr>
+  <!--コメント表示-->
+    <div class="post-comments">
+      <%= render 'posts/post_comments', post: @post %>
+    </div>
   </div>
 </div>
 
-<div>
-  <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-    <%= f.attachment_field :image %>
-    <%= f.text_area :content, placeholder: "コメントを入力" %>
-    <%= f.submit 'コメント送信' %>
-  <% end %>
-</div>
-
-<div>
-  <%= render 'posts/post_comments', post: @post %>
-</div>
-<%= link_to 'ホーム', posts_path %>

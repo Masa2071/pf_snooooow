@@ -19,7 +19,22 @@
   width: 100px;
 }
 
-.follow-btn {
-  background-color: #FF99FF;
+.edit-field {
+  width: 80%;
 }
 
+.image-border {
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.profile-black a{
+  text-decoration: none;
+}
+
+.user-post-title {
+  position: sticky;
+  top: 0px;
+  background-color: #EEFFFF;
+}

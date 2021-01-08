@@ -1,15 +1,20 @@
 <% post.post_comments.each do |post_comment| %>
-  <div>
-      <%= attachment_image_tag post_comment.user, :profile_image, :fill, 50, 50, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg' %>
-      <%= post_comment.user.name %>
-  </div>
-  <div>
-    <%= attachment_image_tag post_comment, :image, :fill, 50, 50, format: 'jpeg' %>
-    <%= post_comment.content %>
-    <% if post_comment.user == current_user %>
-      <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete do %>
-        <i class="fas fa-trash-alt"></i>
-      <% end %>
+  <div class="commenter-profile">
+    <%= link_to user_path(post_comment), class: "btn left-btn" do %>
+      <%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", fallback: 'no_image.jpg', format: 'jpeg', class: "rounded-circle" %>
+      <span class="commenter-name-position"><%= post_comment.user.name %></span>
     <% end %>
   </div>
+  <div>
+    <p class="text-center mt-3"><%= attachment_image_tag post_comment, :image, size: "180", format: 'jpeg', class: "img" %></p>
+    <p><%= post_comment.content %></p>
+    <% if post_comment.user == current_user %>
+    <div>
+      <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <hr>
 <% end %>
