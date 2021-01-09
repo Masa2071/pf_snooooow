@@ -1,6 +1,19 @@
-<h2>フォロワー</h2>
-  <% if @users.exists? %>
-    <%= render 'relationships/index', users: @users %>
-  <% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="row">
+  <div class="col-sm-3 left-line">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+    </div>
+  </div>
+  <div class="col-sm-6 main">
+    
+    <h2>フォロワー</h2>
+      <% if @users.exists? %>
+        <%= render 'relationships/index', users: @users %>
+      <% else %>
+      <p>ユーザーはいません</p>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>

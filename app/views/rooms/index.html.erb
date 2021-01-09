@@ -1,13 +1,26 @@
-<div class="side-bar">
-
-</div>
-<div class="">
-  <% @rooms.each do |room| %>
-    <% room.chats.each do |user| %>
-      <%= user.user.name %>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+      <%= render "devise/shared/my_profile", current_user: @user %>
+    </div>
+  </div>
+  <div class="col-sm-9 main">
+    <h1>メッセージ一覧</h1>
+    <% @anotherEntries.each do |e| %>
+      <div>
+      <%= link_to room_path(e.room.id) do %>
+        <%= attachment_image_tag e.user, :profile_image, size: "70x70", fallback: 'no_image.jpg', format: 'jpeg', class: "rounded-circle" %>
+        <span><%= e.user.name %></span>
+      <% end %>
+      <% @rooms.each do |room| %>
+        <% if room.id == e.room.id %>
+          <%= room.chats.order(created_at: :desc).take.try(:message) %>
+        <% end %>
+      <% end %><br>
+      </div>
+      <hr>
     <% end %>
-  <% end %>
+  </div>
+
 </div>
-
-
-
