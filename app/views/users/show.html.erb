@@ -1,14 +1,15 @@
 <div class="row">
-  <div class="col-sm-3">
-    <span class="btn btn-outline-primary mb-3"><%= link_to 'ホーム', posts_path %></span>
-    <span class="btn btn-outline-primary mb-3"><%= link_to 'イベント作成', new_event_path %></span>
-    <span class="btn btn-outline-primary mb-3"><%= link_to 'イベント一覧', events_path %></span>
-    <span class="btn btn-outline-primary mb-3"><%= link_to 'DM一覧', rooms_path %></span>
-    <span class="btn btn-outline-primary mb-3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></span>
+  <div class="col-sm-3 left-line">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+      <% unless current_user == @user %>
+      <%= render "devise/shared/my_profile", current_user: @current_user %>
+      <% end %>
+    </div>
   </div>
-  <div class="col-sm-9 mt-5">
+  <div class="col-sm-6 mt-5 main">
     <div class="profile-show">
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: 'no_image.jpg', size: '100x100', format: 'jpeg', class: "rounded-circle" %>
+      <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: 'no_image.jpg', size: '100x100', format: 'jpeg', class: "rounded-circle" %>
       <span class="name ml-3 mt-2 user-show-name"><%= @user.name %></span>
       <span class="ml-3 font-s"><%= @user.birthday %>歳</span>
       <span class="ml-2 font-s"><%= @user.sex %></span>
@@ -54,22 +55,15 @@
       <h4>自己紹介</h4>
       <p class="ml-3"><%= @user.introduction %></p>
 
-
     <hr>
-
-
-
-  投稿
-  <% @posts.each do |post| %>
-    <div>
-      <%= link_to post_path(post) do %>
-        <p class="post-image"><%= attachment_image_tag post, :post_image, :fill, 150, 150, format: 'jpeg' %></p>
-		  	<p class="post-text mt-3 ml-3"><%= post.content %></p>
-      <% end %>
-    </div>
-    <hr>
-  <% end %>
-
-
   </div>
+
+  <div class="col-sm-3 right-bar">
+    <div class="user-post-title">
+      <p>投稿</p>
+    </div>
+    <%= render '/users/favorites', posts: @posts %>
+  </div>
+
+
 </div>

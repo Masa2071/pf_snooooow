@@ -1,14 +1,26 @@
-<div class="side-bar">
-  <%= link_to 'ホーム', posts_path %>
-</div>
-<h4>メッセージ</h4>
-
-<hr>
-<div class="chats">
-  <div class="chat">
-    <%= render 'rooms/chat', messages: @messages %>
+<div class="row">
+  <div class="col-sm-3 line-left">
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+    </div>
   </div>
-  <div class="posts">
-    <%= render 'rooms/form', message: @message %>
+  <div class="col-sm-9 main">
+    <h4>メッセージ</h4>
+    <% @entries.each do |entry| %>
+      <div>
+          <%= link_to user_path(entry.user.id) do %>
+            <%= entry.user.name %>さん
+          <% end %>
+      </div>
+    <% end %>
+  <hr>
+    <div>
+      <div>
+        <%= render 'rooms/chat', messages: @messages %>
+      </div>
+      <div>
+        <%= render 'rooms/form', message: @message %>
+      </div>
+    </div>
   </div>
 </div>

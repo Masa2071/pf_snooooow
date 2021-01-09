@@ -85,6 +85,6 @@ class User < ApplicationRecord
     return { user: user ,sns: sns}
   end
 
-  enum sex: { "非公開" =>0, "男性" =>1, "女性" =>2 }
+  enum sex: { "男性" =>0, "女性" =>1 }
   enum style: { "スノーボーダー" =>0, "スキーヤー" =>1, "その他" =>2 }
 end

@@ -1,0 +1,24 @@
+<%= link_to posts_path, class: "btn btn-outline-primary mb-3 side-btn" do %>
+  <i class="fas fa-home"></i>
+  <span>ホーム</span>
+<% end %>
+<%= link_to user_path(current_user), class: "btn btn-outline-primary mb-3 side-btn" do %>
+  <i class="fas fa-user"></i>
+  <span>マイページ</span>
+<% end %>
+<%= link_to new_event_path, class: "btn btn-outline-primary mb-3 side-btn" do %>
+  <i class="far fa-calendar-plus"></i>
+  <span>イベント作成</span>
+<% end %>
+<%= link_to events_path, class: "btn btn-outline-primary mb-3 side-btn" do %>
+  <i class="far fa-calendar-alt"></i>
+  <span>イベント一覧</span>
+<% end %>
+<%= link_to rooms_path, class: "btn btn-outline-primary mb-3 side-btn" do %>
+  <i class="far fa-envelope-open"></i>
+  <span>DM一覧</span>
+<% end %>
+<%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-primary mb-3 side-btn" do %>
+  <i class="fas fa-sign-out-alt"></i>
+  <span>ログアウト</span>
+<% end %>

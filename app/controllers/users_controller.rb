@@ -5,8 +5,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-     birthday = Happybirthday.born_on(current_user.birthday)
+    birthday = Happybirthday.born_on(current_user.birthday)
     @user.birthday = birthday.age.years_old
+    @current_user = current_user
     @posts = @user.posts
     # DM処理
     @currentUserEntry=Entry.where(user_id: current_user.id)
@@ -31,15 +32,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
+    if @user == current_user
+      render "edit"
+    else
+      redirect_to posts_path
     end
   end
 
   def update
     user = User.find(params[:id])
     user.update(user_params)
-    redirect_to posts_path
+    redirect_to user_path(user)
   end
 
   def new
