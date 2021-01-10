@@ -1,15 +1,17 @@
 <% if messages.present? %>
   <% messages.each do |m| %>
     <div class="chat-box">
-      <div class="profile">
-        <%= link_to user_path(m.user.id) do %>
-          <%= attachment_image_tag m.user, :profile_image,fallback: 'no_image.jpg', size: '50x50', format: 'jpeg' %>
-          <%= m.user.name %>
+      <div class="chat-profile decoration">
+        <%= link_to user_path(m.user.id), class: "under-line" do %>
+          <%= attachment_image_tag m.user, :profile_image, fallback: 'no_image.jpg', size: '50x50', format: 'jpeg', class: "rounded-circle" %>
+          <span class="chat-user-name ml-1"><%= m.user.name %></span>
         <% end %>
+        <span class="font-s chat-time ml-2"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%></span>
       </div>
-      <div class="chat-hukidashi"> <strong><%= m.message %></strong> <br>
-        <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+      <div class="chat-hukidashi mt-2">
+        <p class="ml-3"><%= m.message %></p>
       </div>
     </div>
+  <hr>
   <% end %>
 <% end %>

@@ -1,4 +1,4 @@
-<%= link_to user_path(user), class: "btn" do %>
-  <%= attachment_image_tag user, :profile_image, size: "100x100", fallback: 'no_image.jpg', size: '100x100', format: 'jpeg', class: "rounded-circle" %>
-  <%= user.name %>
+<%= link_to user_path(user), class: "under-line" do %>
+  <%= attachment_image_tag user, :profile_image, size: "70x70", fallback: 'no_image.jpg', format: 'jpeg', class: "rounded-circle" %>
+  <span class="user-name"><%= user.name %></span>
 <% end %>

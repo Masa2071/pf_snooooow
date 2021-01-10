@@ -26,9 +26,18 @@
   text-decoration: none;
 }
 
-
 .post-comment-btn {
   width: 30%;
   text-align: center;
 }
+.post-show-profile {
+  position: relative
+}
 
+
+.user-name {
+  font-size: 20px;
+  position: absolute;
+  left: 100px;
+  top: 4px;
+}

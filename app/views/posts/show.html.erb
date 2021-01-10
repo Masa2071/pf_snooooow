@@ -1,27 +1,30 @@
 <div class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
       <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
-  <div class="col-sm-6 post-comment main">
-    <div class="post-show-profile">
+  <div class="col-sm-6 post-comment main pt-4 pb-4">
+    <div class="post-show-profile decoration">
       <!--プルフィール-->
       <%= render 'users/profile', user: @user %>
     </div>
+    <hr>
     <div class="mt-4 text-center">
       <%= attachment_image_tag @post, :post_image, size: '500', format: 'jpeg', class: "img" %>
     </div>
     <div id="bottons_<%= @post.id %>"><!--あいこん-->
-  		 <%= render 'posts/icon' ,post: @post %>
+  		 <%= render 'posts/icon', post: @post %>
     </div>
     <div>
       <%= @post.content %>
     </div>
   </div>
   <div class="col-sm-3 right-bar">
-    <div class="comment-form pb-2">
+    <div class="comment-form pb-3 mb-3">
+      <h4 class="sub-title text-center py-1"><i class="fas fa-pencil-alt"></i>コメント</h4>
       <%= form_with model:[@post, @post_comment] do |f| %>
         <%= f.label :image do%>
         <i class="fas fa-camera"></i>
@@ -33,7 +36,6 @@
       </div>
       <% end %>
     </div>
-  <hr>
   <!--コメント表示-->
     <div class="post-comments">
       <%= render 'posts/post_comments', post: @post %>

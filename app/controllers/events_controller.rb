@@ -22,6 +22,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event_comment = EventComment.new
     @user = @event.user
+    @current_user = current_user
   end
 
 

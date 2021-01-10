@@ -12,6 +12,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     # ログイン中のユーザIDとそれに紐付くルームID
+    @current_user = current_user
     if Entry.where(user_id: current_user.id,room_id: @room.id).present?
       @messages = @room.chats
       @message = Chat.new
