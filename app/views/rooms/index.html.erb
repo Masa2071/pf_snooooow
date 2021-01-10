@@ -1,13 +1,34 @@
-<div class="side-bar">
-
-</div>
-<div class="">
-  <% @rooms.each do |room| %>
-    <% room.chats.each do |user| %>
-      <%= user.user.name %>
+<div class="row">
+  <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
+    <div class="side-bar">
+      <%= render "devise/shared/side_links" %>
+      <%= render "devise/shared/my_profile", current_user: @user %>
+    </div>
+  </div>
+  <div class="col-sm-9 main pt-5">
+    <h3 class="page-title text-center py-2 mb-4"><i class="far fa-envelope"></i>メッセージ一覧</h3>
+    <% @anotherEntries.each do |e| %>
+      <div class="profile-index">
+        <%= link_to user_path(e.user.id), class: "btn" do %>
+          <%= attachment_image_tag e.user, :profile_image, size: "70x70", fallback: 'no_image.jpg', format: 'jpeg', class: "rounded-circle" %>
+          <span class="profile-name-position ml-2"><%= e.user.name %></span>
+        <% end %>
+      </div>
+      <div class="e-messages">
+        <%= link_to room_path(e.room.id), class: "under-line" do %>
+          <% @rooms.each do |room| %>
+            <% if room.id == e.room.id %>
+              <!--<%# if room.chats.order(created_at: :desc).take.try(:message) == nil? %>-->
+              <!--  <p>やりとりはありません。</p>-->
+              <!--<#% else %>-->
+                <p class="ml-5"><%= truncate(room.chats.order(created_at: :desc).take.try(:message), length: 40)  %></p>
+              <!--<#% end %>-->
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <hr>
     <% end %>
-  <% end %>
+  </div>
 </div>
-
-
-

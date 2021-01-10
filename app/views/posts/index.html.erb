@@ -1,18 +1,19 @@
 <div class="row">
   <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
       <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
-  <div class="col-sm-9 main">
+  <div class="col-sm-9 main py-4">
+    <h3 class="page-title text-center py-2"><i class="fas fa-home"></i>ホーム</h3>
       <!--投稿フォーム-->
-      <%= render '/posts/form', post: @post %>
-  <hr style="height:1px; background-color:#808080;">
+    <%= render '/posts/form', post: @post %>
     <div class="posts">
       <!--投稿一覧-->
         <% @posts.each do |post| %>
-          <div class="post-index">
+          <div class="post-index_<%= post.id %>">
             <!--<#%= render 'posts/index', post: post %>-->
             <div class="profile-index mb-3">
               <%= render 'posts/profile', post: post %>
@@ -24,9 +25,10 @@
             <!--あいこんぼたん-->
             <div id="bottons_<%= post.id %>">
               <%= render 'posts/icon', post: post %>
+              <%= render 'posts/delete_icon', post: post %>
             </div>
-          </div>
   <hr>
+          </div>
         <% end %>
     </div>
   </div>

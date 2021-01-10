@@ -22,11 +22,6 @@
   margin: 0 auto;
 }
 
-hr {
-  height: 5px;
-  color: red;
-}
-
 .side-btn {
     width: 70%;
     text-align: left;
@@ -130,8 +125,11 @@ hr {
 }
 
 .right-bar {
+
   height: calc(100vh - 48px);
   overflow: scroll;
+  border: solid #EEFFFF;
+  border-width: 0px 2px;
 }
 
 .comment-form {
@@ -139,4 +137,25 @@ hr {
   top: 0;
   background-color : #FFFFFF;
   z-index: 1;
+  border-bottom: solid 3px #EEFFFF;
+}
+
+.decoration .under-line {
+  text-decoration: none;
+  color: black;
+}
+
+.page-title {
+  background-color: #EEFFFF;
+  font-size: 15px;
+}
+
+.sub-title {
+  background-color:  #EEFFFF;
+  font-size: 12px;
+}
+
+.fixed {
+  position: sticky;
+  top: 0;
 }

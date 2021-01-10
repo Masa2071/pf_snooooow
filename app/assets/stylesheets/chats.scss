@@ -1,3 +1,21 @@
 // Place all the styles related to the chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chat-profile {
+  position: relative;
+}
+
+.chat-user-name {
+  position: absolute;
+}
+
+.chat-time {
+  position: absolute;
+  top: 30px;
+}
+
+.scroll {
+  height: calc(100vh - 48px);
+  overflow: scroll;
+}

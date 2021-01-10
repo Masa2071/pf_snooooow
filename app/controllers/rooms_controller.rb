@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  
+
 
   def create
     @room = Room.create
@@ -12,9 +12,11 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     # ログイン中のユーザIDとそれに紐付くルームID
+    @current_user = current_user
     if Entry.where(user_id: current_user.id,room_id: @room.id).present?
       @messages = @room.chats
       @message = Chat.new
+      @entries = @room.entries
     else
       redirect_back(fallback_location: root_path)
     end
@@ -22,7 +24,15 @@ class RoomsController < ApplicationController
 
   def index
     # ログイン中のユーザーのIDとルームIDが一致するもの
-    @rooms = Room.joins(:entries).where( 'entries.user_id =?', current_user.id )
+    # @rooms = Room.joins(:entries).where( 'entries.user_id =?', current_user.id )
+    @rooms = Room.all
+    @user = current_user
+    @currentEntries = current_user.entries
+    myRoomIds = []
+    @currentEntries.each do | entry |
+      myRoomIds << entry.room.id
+    end
+    @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?', @user.id)
 
   end
 end
