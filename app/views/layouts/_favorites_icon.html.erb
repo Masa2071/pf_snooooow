@@ -10,8 +10,3 @@
     <%= post.favorites.count %>
   <% end %>
 <% end %>
-<!--こめんとあいこん-->
-<%= link_to post_path(post), class: 'btn comment-icon' do %>
-  <i class="far fa-comment-dots ml-2"></i>
- 	<span><%= post.post_comments.count %></span>
-<% end %>

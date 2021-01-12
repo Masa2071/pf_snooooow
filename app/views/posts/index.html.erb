@@ -8,6 +8,7 @@
   </div>
   <div class="col-sm-9 main py-4">
     <h3 class="page-title text-center py-2"><i class="fas fa-home"></i>ホーム</h3>
+    <span class="font-s flash-error"><%= flash[:alert] %></span>
       <!--投稿フォーム-->
     <%= render '/posts/form', post: @post %>
     <div class="posts">
@@ -23,9 +24,10 @@
             	<%= render 'posts/contents', post: post %>
             </div>
             <!--あいこんぼたん-->
-            <div id="bottons_<%= post.id %>">
-              <%= render 'posts/icon', post: post %>
-              <%= render 'posts/delete_icon', post: post %>
+            <div>
+              <span id="bottons_<%= post.id %>"><%= render 'layouts/favorites_icon', post: post %></span>
+              <span id="bottons_<%= post.id %>"><%= render 'layouts/comments_icon', post: post %></span>
+              <span id="bottons_<%= post.id %>"><%= render 'layouts/delete_icon', post: post %></span>
             </div>
   <hr>
           </div>

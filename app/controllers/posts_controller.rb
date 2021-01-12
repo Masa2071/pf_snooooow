@@ -8,10 +8,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    post.save
-    redirect_to posts_path
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to posts_path
+    else
+      flash[:alert] = "投稿に失敗しました。"
+      redirect_to posts_path
+    end
   end
 
   def show
@@ -25,6 +29,7 @@ class PostsController < ApplicationController
     # binding.pry
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:notice] = "削除しました。"
   end
 
   private

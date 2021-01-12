@@ -22,7 +22,8 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
 
-  # validates :name, presence: true, length: { maximum: 8 }
+  validates :name, presence: true, length: { in: 2..8 }, on: :update
+  
 
   def follow(user_id) #フォローする
     relationships.create(followed_id: user_id)

@@ -15,8 +15,9 @@
     <div class="mt-4 text-center">
       <%= attachment_image_tag @post, :post_image, size: '500', format: 'jpeg', class: "img" %>
     </div>
-    <div id="bottons_<%= @post.id %>"><!--あいこん-->
-  		 <%= render 'posts/icon', post: @post %>
+    <div><!--あいこん-->
+  		<span id="bottons_<%= @post.id %>"><%= render 'layouts/favorites_icon', post: @post %></span>
+      <span id="comment_botton_<%= @post.id %>"><%= render 'layouts/comments_icon', post: @post %></span>
     </div>
     <div>
       <%= @post.content %>

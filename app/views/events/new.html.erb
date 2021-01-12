@@ -8,6 +8,7 @@
   <div class="col-sm-9 py-4 main">
     <h3 class="page-title text-center py-2"><i class="far fa-calendar-plus"></i></i>イベント作成</h3>
     <%= form_with model: @event, local:true do |f| %>
+      <%= render "layouts/errors", model: @event %>
       <div class="filed mt-3">
         <span class="font-weight-bold"><%= f.label :タイトル %></span><br>
         <%= f.text_field :title, placeholder: "タイトル", class: "event-filed" %>
