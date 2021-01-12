@@ -53,14 +53,14 @@
   <div class="col-sm-3 right-bar">
     <div class="comment-form pb-3 mb-3">
       <h4 class="sub-title text-center py-1"><i class="fas fa-pencil-alt"></i>コメント</h4>
-      <%= form_with(model:[@event, @event_comment], local: true) do |f| %>
+      <%= form_with(model:[@event, @event_comment], remote: true) do |f| %>
         <%= f.text_area :content, placeholder: "コメントを入力", class: 'content' %>
         <div  class="text-right">
           <%= f.submit('送信', class: "btn  btn-outline-primary post-comment-btn rounded-pill mt-1") %>
         </div>
       <% end %>
     </div>
-    <div>
+    <div class="event-comments">
       <%= render '/events/event_comments', event: @event %>
     </div>
   </div>

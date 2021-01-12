@@ -22,7 +22,7 @@
               <!--<%# if room.chats.order(created_at: :desc).take.try(:message) == nil? %>-->
               <!--  <p>やりとりはありません。</p>-->
               <!--<#% else %>-->
-                <p class="ml-5"><%= truncate(room.chats.order(created_at: :desc).take.try(:message), length: 40)  %></p>
+                <p class="ml-3">メッセージ:<span class="ml-3"><%= truncate(room.chats.order(created_at: :desc).take.try(:message), length: 40)  %></span></p>
               <!--<#% end %>-->
             <% end %>
           <% end %>

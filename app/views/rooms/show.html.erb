@@ -8,6 +8,7 @@
   </div>
   <div class="col-sm-9 main py-4">
     <h3 class="page-title text-center py-2 mb-4"><i class="far fa-envelope-open"></i>メッセージ</h3>
+    <span class="font-s flash-error"><%= flash[:alert] %></span>
     <% @entries.each do |entry| %>
       <% if entry.user_id != current_user.id %>
         <div class="decoration">

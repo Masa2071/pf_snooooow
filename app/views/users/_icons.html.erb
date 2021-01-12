@@ -6,30 +6,11 @@
 		  	<p class="post-text mt-3 ml-3"><%= truncate(post.content, length: 50) %></p>
 		  <% end %>
 	  </div>
-	  <!--いいね-->
-	  <div id="bottons_<%= post.id %>">
-		  <% if post.favorited_by?(current_user) %>
-			  <%= link_to post_favorites_path(post), class: 'btn', method: :delete, remote: true do %>
-			    <i class="fa fa-heart favorite-btn ml-2"></i>
-			    <%= post.favorites.count %>
-			  <% end %>
-			<% else %>
-			  <%= link_to post_favorites_path(post), class: 'btn', method: :post, remote: true do %>
-			    <i class="fa fa-heart unfavorite-btn ml-2"></i>
-			    <%= post.favorites.count %>
-			  <% end %>
-			<% end %>
+	  <div>
+	  	<!--いいね-->
+		  <span id="bottons_<%= post.id %>"><%= render 'layouts/favorites_icon', post: post %></span>
 			<!--こめんと-->
-			<%= link_to post_path(post), class: 'btn' do %>
-			  <i class="far fa-comment-dots ml-2"></i>
-			 	<%= post.post_comments.count %>
-		  <% end %>
-			<!--削除アイコン-->
-			<% if post.user_id == current_user.id %>　<!--投稿者本人なら削除-->
-				<%= link_to  post_path(post), class: 'btn', method: :delete, remote: true do %>
-				  <i class="fas fa-trash-alt delete-btn"></i>
-				<% end %>
-			<% end %>
+			<span id="bottons_<%= post.id %>"><%= render 'layouts/comments_icon', post: post %></span>
 		</div>
   </div>
   <hr>

@@ -1,19 +1,21 @@
 <% event.event_comments.each do |event_comment| %>
-  <div class="commenter-profile">
-    <%= link_to user_path(event_comment), class: "btn left-btn" do %>
-      <%= attachment_image_tag event_comment.user, :profile_image, fallback: 'no_image.jpg', size: '50x50', format: 'jpeg', class: "rounded-circle" %>
-      <span class="commenter-name-position"><%= event_comment.user.name %></span>
-    <% end %>
-  </div>
-  <div>
-    <p><%= event_comment.content %></p>
-    <% if event_comment.user == current_user %>
-    <div>
-      <%= link_to event_event_comment_path(event_comment.event, event_comment), method: :delete do %>
-        <i class="fas fa-trash-alt"></i>
+  <div id="event-comment_index_<%= event_comment.id %>">
+    <div class="commenter-profile">
+      <%= link_to user_path(event_comment), class: "btn left-btn" do %>
+        <%= attachment_image_tag event_comment.user, :profile_image, fallback: 'no_image.jpg', size: '50x50', format: 'jpeg', class: "rounded-circle" %>
+        <span class="commenter-name-position"><%= event_comment.user.name %></span>
       <% end %>
     </div>
-    <% end %>
+    <div>
+      <p><%= event_comment.content %></p>
+      <% if event_comment.user == current_user %>
+      <div>
+        <%= link_to event_event_comment_path(event_comment.event, event_comment),  method: :delete, remote: true do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <hr>
   </div>
-  <hr>
 <% end %>
