@@ -22,10 +22,25 @@
   // margin: 0 auto;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.row {
+  height: 100%;
+}
+
 .side-btn {
     width: 70%;
     text-align: left;
-
 }
 
 .login-field {
@@ -175,4 +190,3 @@ li {
 .flash-error {
   color: red;
 }
-

@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
+      <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
   <div class="col-sm-6 main py-4">
@@ -11,6 +13,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">フォロワー</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">おすすめユーザー</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -30,9 +35,13 @@
           <p class="mt-4">ユーザーはいません</p>
         <% end %>
       </div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <%= render 'relationships/latest_user', userall: @userall %>
+      </div>
     </div>
   </div>
   <div class="col-sm-3 right-bar">
-
+    <h4 class="sub-title text-center py-1"><i class="fas fa-search pr-1"></i>ユーザー検索</h4>
+    <%= render 'relationships/search', search: @search, searchusers: @searchusers %>
   </div>
 </div>

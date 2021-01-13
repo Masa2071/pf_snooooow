@@ -1,15 +1,25 @@
-<div class="row">
-  <div class="col-sm-6 snb-img">
-    <p>あなたの「好き」をフォローしましょう。</p>
-    <p>話題のトピックを追いかけましょう。</p>
-    <p>会話に参加しましょう。</p>
-  </div>
-  <div class="col-sm-6">
-    <div class="text-center">
-      <%= link_to 'ログイン', new_user_session_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SNoooooW</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="top">
+        <div class="top-text">
+          <p><i class="fas fa-search pr-1"></i>あなたの「好き」をフォローしましょう。</p>
+          <p><i class="fas fa-user-plus pr-1"></i>話題のトピックを追いかけましょう。</p>
+          <p><i class="far fa-comment pr-1"></i>会話に参加しましょう。</p>
+        </div>
+        <div class="top-btns">
+          <p class="top-btn mt-3"><%= link_to 'アカウント作成', new_user_registration_path, class: "btn btn-primary btn-block" %></p>
+          <p class="top-btn mt-3"><%= link_to 'ログイン', new_user_session_path, class: "btn btn-dark btn-block" %></p>
+        </div>
     </div>
-    <div class="text-center">
-      <%= link_to 'ユーザー登録', new_user_registration_path %>
-    </div>
-  </div>
-</div>
+  </body>
+</html>
