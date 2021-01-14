@@ -89,3 +89,7 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'ransack'
+
+gem 'data-confirm-modal' #alart変更

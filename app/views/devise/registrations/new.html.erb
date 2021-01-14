@@ -1,37 +1,53 @@
-<div class="row">
-  <div class="col-sm-10 offset-sm-1">
-    <h2>ユーザー登録</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SNoooooW</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "signup-field" %>
+  <body class="snb-img">
+    <div class="container-fluid pt-5">
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+        <h2 class="text-center">アカウント作成</h2>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field">
+            <span class="font-weight-bold"><%= f.label :email %></span><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "signup-field" %>
+          </div>
+          <div class="field mt-3">
+            <span class="font-weight-bold"><%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %>文字以上)</em></span>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: "signup-field" %>
+          </div>
+          <div class="field mt-3">
+            <span class="font-weight-bold"><%= f.label :password_confirmation %></span><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "signup-field" %>
+          </div>
+          <div class="actions">
+            <%= f.submit('アカウント作成', class: "btn btn-primary mt-4 btn-block") %>
+          </div>
+           <% end %>
+          <div class="">
+            <%= render "devise/shared/links" %>
+          </div>
+          <div class="decoration">
+            <%= link_to root_path, class: "under-line" do %>
+              <p class="text-right"><i class="fas fa-door-open"></i>トップに戻る</p>
+            <% end %>
+          </div>
+        </div>
       </div>
+    </div>
+  </body>
+</html>
 
-      <div class="field mt-3">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "signup-field" %>
-      </div>
 
-      <div class="field mt-3">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "signup-field" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit('ユーザー登録', class: "btn signup-btn mt-4") %>
-      </div>
-
-    <% end %>
-
-      <div class="">
-        <%= render "devise/shared/links" %>
-      </div>
-
-  </div>
-</div>

@@ -1,2 +1,3 @@
+$("#comment_botton_<%= @post.id %>").find('.comment-icon span').text("<%= @post.post_comments.count %>");
 $(".post-comments").html("<%= j(render 'posts/post_comments', post: @post) %>");
 $("#post_comment_content").val("");

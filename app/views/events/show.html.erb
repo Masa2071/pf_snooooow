@@ -1,54 +1,93 @@
 <div class="row">
   <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
+      <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
-  <div class="col-sm-6 main">
-    <h4><%= @event.title %></h4>
+  <div class="col-sm-6 main py-4">
+    <div class="eventer-profile">
+      <%= link_to user_path(@event.user_id), class: "btn" do %>
+        <%= attachment_image_tag @event.user, :profile_image, size: "50x50", fallback: 'no_image.jpg', format: 'jpeg', class: "rounded-circle" %>
+        <span class="eventer-name ml-3"><%= @event.user.name %></span>
+        <span class="eventer-sex ml-3 font-s"><%= @event.user.sex %></span>
+      <% end %>
+      <p class="font-s mt-1"><span><%= @event.created_at.strftime("%Y年%m月%d日") %></span>作成</p>
+    </div>
+    <hr>
     <div>
-      <hr>
-      <div>
-        <span class="font-weight-bold mr-2">出発予定日時:</span><%= @event.etd.strftime("%Y/%m/%d/%H:%M") %>
-      </div>
-      <hr>
-      <div>
-        <span class="font-weight-bold mr-2">帰宅予定日時:</span><%= @event.eta.strftime("%Y/%m/%d/%H:%M") %>
-      </div>
-      <hr>
-      <div>
-        <span class="font-weight-bold mr-2">申込締切日時:</span><%= @event.preiod.strftime("%Y/%m/%d/%H:%M") %>
-      </div>
-      <hr>
-      <div>
-        <span class="font-weight-bold mr-2">目的地:</span><%= @event.destination %>
-      </div>
-      <hr>
-      <div>
-        <span class="font-weight-bold mr-2">募集人数:</span><%= @event.recruitment %>人
-      </div>
-      <hr>
-      <div>
-        <span class="font-weight-bold mr-2">費用¥:</span><%= @event.cost %>
-      </div>
-      <hr>
-      <div>
-        <span class="font-weight-bold">詳細</span>
-        <p><%= @event.content %></p>
-      </div>
+      <span class="font-weight-bold mr-2">出発予定日時:</span><%= @event.etd.strftime("%Y/%m/%d/%H:%M") %>
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold mr-2">帰宅予定日時:</span><%= @event.eta.strftime("%Y/%m/%d/%H:%M") %>
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold mr-2">申込締切日時:</span><%= @event.preiod.strftime("%Y/%m/%d/%H:%M") %>
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold mr-2">目的地:</span><%= @event.destination %>
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold mr-2">募集人数:</span><%= @event.recruitment %>人
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold mr-2">費用¥:</span><%= @event.cost %>
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold">タイトル</span>
+      <p><%= @event.title %></p>
+    </div>
+    <hr>
+    <div>
+      <span class="font-weight-bold">詳細</span>
+      <p><%= @event.content %></p>
+    </div>
+    <div>
+      <% unless @user == current_user %>
+      <% if @event.count_by?(@event) %><!--締切期限内で募集人数に達していないとき-->
+      <!--申し込み済みかの確認-->
+        <% if @event.applied_by?(current_user) %>
+          <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete, data:
+          {confirm: "参加をキャンセルしますか？</br>キャンセルする場合は必ず主催者様に事前にご連絡お願いします。", cancel: 'キャンセル', commit: '参加取消'}, title: '参加取消確認', class: "btn btn-danger btn-block" do %>
+           <span>申し込み取消</span>
+          <% end %>
+        <% else %>
+          <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :post, data:
+          {confirm: "参加を申し込みますか？</br>申し込み後にキャンセルされる場合は主催者様に必ずご連絡お願いします。", cancel: 'キャンセル', commit: '参加する'}, title: '参加申込確認', class: "btn btn-primary btn-block" do %>
+          <span>申し込み</span>
+          <% end %>
+        <% end %>
+      <% else %><!--締切期限後か募集人数に達した時-->
+        <% if @event.applied_by?(current_user) %>
+          <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete, data:
+          {confirm: "参加をキャンセルしますか？</br>キャンセルする場合は必ず主催者様に事前にご連絡お願いします。", cancel: 'キャンセル', commit: '参加取消'}, title: '参加取消確認', class: "btn btn-danger btn-block" do %>
+           <span>申し込み取消</span>
+          <% end %>
+        <% else %>
+            <p class="text-center event-alert py-2">募集終了</p>
+        <% end %>
+      <% end %>
+      <% end %>
     </div>
   </div>
   <div class="col-sm-3 right-bar">
-    <div class="comment-form pb-2">
-      <%= form_with(model:[@event, @event_comment], local: true) do |f| %>
+    <div class="comment-form pb-3 mb-3">
+      <h4 class="sub-title text-center py-1"><i class="fas fa-pencil-alt"></i>コメント</h4>
+      <%= form_with(model:[@event, @event_comment], remote: true) do |f| %>
         <%= f.text_area :content, placeholder: "コメントを入力", class: 'content' %>
         <div  class="text-right">
           <%= f.submit('送信', class: "btn  btn-outline-primary post-comment-btn rounded-pill mt-1") %>
         </div>
       <% end %>
     </div>
-    <hr>
-    <div>
+    <div class="event-comments">
       <%= render '/events/event_comments', event: @event %>
     </div>
   </div>

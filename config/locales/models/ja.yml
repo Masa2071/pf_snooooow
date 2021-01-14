@@ -1,10 +1,9 @@
 ja:
   activerecord:
-    models:
-      event: イベント
     attributes:
       event:
-        name: イベント名
-        place: 開催場所
+        title: タイトル
         content: イベント内容
-        
+        etd: 出発予定日時
+        eta: 帰宅予定日時
+        preiod: 申込締切

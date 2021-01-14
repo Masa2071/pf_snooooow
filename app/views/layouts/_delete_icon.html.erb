@@ -1,0 +1,6 @@
+<!--削除アイコン-->
+<% if post.user_id == current_user.id %>　<!--投稿者本人なら削除-->
+	<%= link_to  post_path(post), class: 'btn', method: :delete, remote: true do %>
+	  <i class="fas fa-trash-alt delete-btn"></i>
+	<% end %>
+<% end %>

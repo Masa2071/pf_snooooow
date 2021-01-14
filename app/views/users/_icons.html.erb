@@ -1,0 +1,17 @@
+<% @posts.each do |post| %>
+  <!--プロフィール部分-->
+  <div class="post_content">
+	  <div class="post decoration">
+	  	<%= link_to post_path(post), class: "under-line" do %>
+		  	<p class="post-text mt-3 ml-3"><%= truncate(post.content, length: 50) %></p>
+		  <% end %>
+	  </div>
+	  <div>
+	  	<!--いいね-->
+		  <span id="bottons_<%= post.id %>"><%= render 'layouts/favorites_icon', post: post %></span>
+			<!--こめんと-->
+			<span id="bottons_<%= post.id %>"><%= render 'layouts/comments_icon', post: post %></span>
+		</div>
+  </div>
+  <hr>
+<% end %>

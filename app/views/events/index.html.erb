@@ -1,16 +1,17 @@
 <div class="row">
   <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
       <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
-  <div class="col-sm-9">
-    <hr>
+  <div class="col-sm-9 main py-4">
+    <h3 class="page-title text-center py-2 fixed"><i class="far fa-calendar-alt"></i>イベント一覧</h3>
     <% @events.each do |event| %>
     <!--<#% binding.pry %>-->
-      <div>
-        <%= link_to event_path(event) do %>
+      <div class="event-title">
+        <%= link_to event_path(event), class: "under-line-bl" do %>
           <i class="fas fa-snowman"></i>
           <span><%= event.title %></span>
         <% end %>

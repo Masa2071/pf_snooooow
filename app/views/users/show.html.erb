@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
       <% unless current_user == @user %>
@@ -7,7 +8,7 @@
       <% end %>
     </div>
   </div>
-  <div class="col-sm-6 mt-5 main">
+  <div class="col-sm-6 py-4 main">
     <div class="profile-show">
       <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: 'no_image.jpg', size: '100x100', format: 'jpeg', class: "rounded-circle" %>
       <span class="name ml-3 mt-2 user-show-name"><%= @user.name %></span>
@@ -27,7 +28,8 @@
       <% else %>
       <%= link_to edit_user_path(@user) do %>
         <i class="fas fa-user-cog mt-3">プロフィール編集</i>
-      <%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+      <%= link_to "退会", users_hide_path(current_user), method: :put, data:
+      {confirm:  '一度退会するとデータは戻りません。</br>本当に退会しますか?', cancel: 'キャンセル', commit: '退会する'}, title: '退会確認', class: "btn btn-outline-danger" %>
       <% end %>
     <% end %>
     </div>
@@ -46,24 +48,16 @@
       <% end %>
     </div>
     <hr>
-
-      <h4>スタイル</h4>
+      <h4 class="font-m font-weight-bold">スタイル</h4>
       <p class="ml-3"><%= @user.style %></p>
-
     <hr>
-
-      <h4>自己紹介</h4>
+      <h4 class="font-m font-weight-bold">自己紹介</h4>
       <p class="ml-3"><%= @user.introduction %></p>
-
     <hr>
   </div>
-
   <div class="col-sm-3 right-bar">
-    <div class="user-post-title">
-      <p>投稿</p>
-    </div>
-    <%= render '/users/favorites', posts: @posts %>
+    <h4 class="sub-title text-center py-1"><i class="fas fa-bullhorn"></i></i>投稿</h4>
+
+    <%= render '/users/icons', posts: @posts %>
   </div>
-
-
 </div>

@@ -1,3 +1,2 @@
-$("#bottons_<%= @post.id %>").html("<%= post.post_comments.count %>");
 $(".post-index").html("<%= j(render 'posts/index', post: @post) %>");
 $("#post_content").val("");

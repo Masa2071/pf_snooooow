@@ -1,42 +1,44 @@
 <div class="row">
   <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
     </div>
   </div>
-  <div class="col-sm-9 mb-5 main">
-    イベント作成
+  <div class="col-sm-9 py-4 main">
+    <h3 class="page-title text-center py-2"><i class="far fa-calendar-plus"></i></i>イベント作成</h3>
     <%= form_with model: @event, local:true do |f| %>
+      <%= render "layouts/errors", model: @event %>
       <div class="filed mt-3">
-        <%= f.label :タイトル %><br>
-        <%= f.text_field :title, placeholder: "タイトル", class: "event-filed" %>
+        <span class="font-weight-bold"><%= f.label :タイトル %></span><br>
+        <%= f.text_field :title, placeholder: "タイトル(38文字以内)", class: "event-filed" %>
       </div>
       <div class="filed mt-3">
-        <%= f.label :詳細 %><br>
+        <span class="font-weight-bold"><%= f.label :詳細 %></span><br>
         <%= f.text_area :content, placeholder: "入力してください", class: "event-filed", rows: 7 %>
       </div>
       <div class="filed mt-3">
-        <%= f.label :出発予定日時 %><br>
+        <span class="font-weight-bold"><%= f.label :出発予定日時 %></span><br>
         <%= f.datetime_field :etd %>
       </div>
       <div class="filed mt-3">
-        <%= f.label :帰宅予定日時 %><br>
+        <span class="font-weight-bold"><%= f.label :帰宅予定日時 %></span><br>
         <%= f.datetime_field :eta %>
       </div>
       <div class="filed mt-3">
-        <%= f.label :申込締切 %><br>
+        <span class="font-weight-bold"><%= f.label :申込締切 %></span><br>
         <%= f.datetime_field :preiod %>
       </div>
       <div class="filed mt-3">
-        <%= f.label :募集人数 %><br>
+        <span class="font-weight-bold"><%= f.label :募集人数 %></span><br>
         <%= f.select :recruitment, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], class: "event-filed" %>人
       </div>
       <div class="filed mt-3">
-        <%= f.label :費用 %><br>
+        <span class="font-weight-bold"><%= f.label :費用 %></span><br>
         <%= f.text_field :cost, placeholder: "0円", class: "event-filed" %>
       </div>
       <div class="filed mt-3">
-        <%= f.label :目的地 %><br>
+        <span class="font-weight-bold"><%= f.label :目的地 %></span><br>
         <%= f.text_field :destination, placeholder: "野沢温泉スキー場、白馬八方尾根スキー場、苗場スキー場", class: "event-filed" %>
       </div>
       <div class="filed mt-3 text-left">

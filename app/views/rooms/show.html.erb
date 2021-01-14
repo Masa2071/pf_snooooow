@@ -1,26 +1,28 @@
 <div class="row">
-  <div class="col-sm-3 line-left">
+  <div class="col-sm-3 left-line">
+    <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
+      <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
-  <div class="col-sm-9 main">
-    <h4>メッセージ</h4>
+  <div class="col-sm-9 main py-4">
+    <h3 class="page-title text-center py-2 mb-4"><i class="far fa-envelope-open"></i>メッセージ</h3>
+    <span class="font-s flash-error"><%= flash[:alert] %></span>
     <% @entries.each do |entry| %>
-      <div>
-          <%= link_to user_path(entry.user.id) do %>
-            <%= entry.user.name %>さん
-          <% end %>
-      </div>
+      <% if entry.user_id != current_user.id %>
+        <div class="decoration">
+          <p>メッセージ先</p>
+            <%= link_to user_path(entry.user.id), class: "under-line" do %>
+              <%= attachment_image_tag entry.user, :profile_image, size: "50x50", fallback: 'no_image.jpg', format: 'jpeg', class: "rounded-circle" %>
+              <span><%= entry.user.name %>さん</span>
+            <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <hr>
+    <%= render 'rooms/form', message: @message %>
     <div>
-      <div>
-        <%= render 'rooms/chat', messages: @messages %>
-      </div>
-      <div>
-        <%= render 'rooms/form', message: @message %>
-      </div>
+      <%= render 'rooms/chat', messages: @messages %>
     </div>
   </div>
 </div>

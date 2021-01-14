@@ -20,6 +20,12 @@
   top: 35px;
 }
 
-.event-title {
-  color: #EEFFFF;
+.event-title .under-line-bl {
+  text-decoration: none;
+}
+
+.event-alert {
+  color: red;
+  border: 2px solid red;
+  border-radius: 5px;
 }

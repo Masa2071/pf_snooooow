@@ -1,11 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SNoooooW</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<div class="row">
-  <div class="col-xs-6 offset-xs-3">
-    <div class="field">
-      <%= link_to 'ログイン', new_user_session_path %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="top">
+        <div class="top-text">
+          <p><i class="fas fa-search pr-1"></i>雪山の情報を共有しよう。</p>
+          <p><i class="fas fa-user-plus pr-1"></i>ウィンタースポーツで「仲間」を見つけよう。</p>
+          <p><i class="far fa-comment pr-1"></i>会話をしよう。</p>
+        </div>
+        <div class="top-btns">
+          <p class="top-btn mt-3"><%= link_to 'アカウント作成', new_user_registration_path, class: "btn btn-primary btn-block" %></p>
+          <p class="top-btn mt-3"><%= link_to 'ログイン', new_user_session_path, class: "btn btn-dark btn-block" %></p>
+        </div>
     </div>
-    <div class="field">
-      <%= link_to 'ユーザー登録', new_user_registration_path %>
-    </div>
-  </div>
-</div>
+  </body>
+</html>

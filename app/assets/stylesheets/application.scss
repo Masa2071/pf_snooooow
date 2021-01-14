@@ -19,18 +19,28 @@
 
 * {
   box-sizing: border-box;
-  margin: 0 auto;
+  // margin: 0 auto;
 }
 
-hr {
-  height: 5px;
-  color: red;
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.row {
+  height: 100%;
 }
 
 .side-btn {
     width: 70%;
     text-align: left;
-
 }
 
 .login-field {
@@ -87,7 +97,7 @@ hr {
 }
 
 .left-line {
-  border: solid #EEFFFF;
+  border: solid #DDFFFF;
   border-width: 0px 2px;
 }
 
@@ -98,14 +108,14 @@ hr {
 }
 
 .main {
-  border: solid #EEFFFF;
+  border: solid #DDFFFF;
   border-width: 0px 2px;
 }
 
 .current-user-profile {
   margin-top: 100px;
   position: relative;
-  background-color: #EEFFFF;
+  background-color: #DDFFFF;
 }
 
 .name-position {
@@ -130,8 +140,11 @@ hr {
 }
 
 .right-bar {
+
   height: calc(100vh - 48px);
   overflow: scroll;
+  border: solid #DDFFFF;
+  border-width: 0px 2px;
 }
 
 .comment-form {
@@ -139,4 +152,47 @@ hr {
   top: 0;
   background-color : #FFFFFF;
   z-index: 1;
+  border-bottom: solid 3px #DDFFFF;
+}
+
+.decoration .under-line {
+  text-decoration: none;
+  color: black;
+}
+
+.page-title {
+  background-color: #DDFFFF;
+  font-size: 15px;
+}
+
+.sub-title {
+  background-color:  #DDFFFF;
+  font-size: 12px;
+}
+
+.fixed {
+  position: sticky;
+  top: 0;
+}
+
+.alert {
+  color:#262626;
+  background:#FFEBE8;
+  text-align: center;
+  border:2px solid #990000;
+  padding:12px; font-weight:850;
+}
+
+li {
+  list-style: none;
+}
+
+.flash-error {
+  color: red;
+}
+
+.snb-img {
+  background-image: image-url("natia-rukhadze-8cQazCNuzVA-unsplash.jpg");
+  background-size: cover;
+  height: 100%;
 }

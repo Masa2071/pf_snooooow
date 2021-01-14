@@ -3,15 +3,19 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     @current_user = current_user
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    post.save
-    redirect_to posts_path
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to posts_path
+    else
+      flash[:alert] = "投稿に失敗しました。"
+      redirect_to posts_path
+    end
   end
 
   def show
@@ -22,9 +26,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # binding.pry
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to request.referer
+    flash[:notice] = "削除しました。"
   end
 
   private

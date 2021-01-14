@@ -7,11 +7,12 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :event_comments, dependent: :destroy
+  has_many :event_users, dependent: :destroy
 
   attachment :profile_image
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+        :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -21,6 +22,9 @@ class User < ApplicationRecord
 
   has_many :entries, dependent: :destroy
   has_many :chats, dependent: :destroy
+
+  validates :name, presence: true, length: { in: 2..8 }, on: :update
+  
 
   def follow(user_id) #フォローする
     relationships.create(followed_id: user_id)

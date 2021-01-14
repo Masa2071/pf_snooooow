@@ -1,5 +1,9 @@
-<%= form_with model: @message, local: true do |f| %>
-  <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
+<div class="comment-form py-3 mb-4">
+  <%= form_with model: @message, local: true do |f| %>
+    <%= f.text_field :message, placeholder: "メッセージを入力して下さい(80文字以内)" , size: "100%" %>
     <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.submit "投稿",class: 'form-submit'%>
-<% end %>
+  <div class="text-right mt-3 pb-2">
+    <%= f.submit('送信', class: "btn  btn-outline-primary post-btn rounded-pill") %>
+  </div>
+  <% end %>
+</div>
