@@ -49,6 +49,33 @@
       <span class="font-weight-bold">詳細</span>
       <p><%= @event.content %></p>
     </div>
+    <div>
+      <% unless @user == current_user %>
+      <% if @event.count_by?(@event) %><!--締切期限内で募集人数に達していないとき-->
+      <!--申し込み済みかの確認-->
+        <% if @event.applied_by?(current_user) %>
+          <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete, data:
+          {confirm: "参加をキャンセルしますか？</br>キャンセルする場合は必ず主催者様に事前にご連絡お願いします。", cancel: 'キャンセル', commit: '参加取消'}, title: '参加取消確認', class: "btn btn-danger btn-block" do %>
+           <span>申し込み取消</span>
+          <% end %>
+        <% else %>
+          <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :post, data:
+          {confirm: "参加を申し込みますか？</br>申し込み後にキャンセルされる場合は主催者様に必ずご連絡お願いします。", cancel: 'キャンセル', commit: '参加する'}, title: '参加申込確認', class: "btn btn-primary btn-block" do %>
+          <span>申し込み</span>
+          <% end %>
+        <% end %>
+      <% else %><!--締切期限後か募集人数に達した時-->
+        <% if @event.applied_by?(current_user) %>
+          <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete, data:
+          {confirm: "参加をキャンセルしますか？</br>キャンセルする場合は必ず主催者様に事前にご連絡お願いします。", cancel: 'キャンセル', commit: '参加取消'}, title: '参加取消確認', class: "btn btn-danger btn-block" do %>
+           <span>申し込み取消</span>
+          <% end %>
+        <% else %>
+            <p class="text-center event-alert py-2">募集終了</p>
+        <% end %>
+      <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="col-sm-3 right-bar">
     <div class="comment-form pb-3 mb-3">

@@ -11,7 +11,7 @@
       <%= render "layouts/errors", model: @event %>
       <div class="filed mt-3">
         <span class="font-weight-bold"><%= f.label :タイトル %></span><br>
-        <%= f.text_field :title, placeholder: "タイトル", class: "event-filed" %>
+        <%= f.text_field :title, placeholder: "タイトル(38文字以内)", class: "event-filed" %>
       </div>
       <div class="filed mt-3">
         <span class="font-weight-bold"><%= f.label :詳細 %></span><br>

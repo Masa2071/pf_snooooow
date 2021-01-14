@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
     @current_user = current_user
   end
 

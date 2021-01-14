@@ -1,4 +1,4 @@
-<% post.post_comments.each do |post_comment| %>
+<% post.post_comments.reverse.each do |post_comment| %>
   <div class="post-comment-index_<%= post_comment.id %>">
     <div class="commenter-profile">
       <%= link_to user_path(post_comment), class: "btn left-btn" do %>

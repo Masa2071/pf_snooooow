@@ -97,7 +97,7 @@ body {
 }
 
 .left-line {
-  border: solid #EEFFFF;
+  border: solid #DDFFFF;
   border-width: 0px 2px;
 }
 
@@ -108,14 +108,14 @@ body {
 }
 
 .main {
-  border: solid #EEFFFF;
+  border: solid #DDFFFF;
   border-width: 0px 2px;
 }
 
 .current-user-profile {
   margin-top: 100px;
   position: relative;
-  background-color: #EEFFFF;
+  background-color: #DDFFFF;
 }
 
 .name-position {
@@ -143,7 +143,7 @@ body {
 
   height: calc(100vh - 48px);
   overflow: scroll;
-  border: solid #EEFFFF;
+  border: solid #DDFFFF;
   border-width: 0px 2px;
 }
 
@@ -152,7 +152,7 @@ body {
   top: 0;
   background-color : #FFFFFF;
   z-index: 1;
-  border-bottom: solid 3px #EEFFFF;
+  border-bottom: solid 3px #DDFFFF;
 }
 
 .decoration .under-line {
@@ -161,12 +161,12 @@ body {
 }
 
 .page-title {
-  background-color: #EEFFFF;
+  background-color: #DDFFFF;
   font-size: 15px;
 }
 
 .sub-title {
-  background-color:  #EEFFFF;
+  background-color:  #DDFFFF;
   font-size: 12px;
 }
 
@@ -189,4 +189,10 @@ li {
 
 .flash-error {
   color: red;
+}
+
+.snb-img {
+  background-image: image-url("natia-rukhadze-8cQazCNuzVA-unsplash.jpg");
+  background-size: cover;
+  height: 100%;
 }
