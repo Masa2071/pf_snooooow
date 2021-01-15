@@ -7,8 +7,10 @@
       <% end %>
     </div>
     <div>
-      <p class="text-center mt-3"><%= attachment_image_tag post_comment, :image, size: "180", format: 'jpeg', class: "img" %></p>
-      <p><%= post_comment.content %></p>
+      <div id="post-comment-form">
+        <p class="text-center mt-3"><%= attachment_image_tag post_comment, :image, size: "180", format: 'jpeg', class: "img" %></p>
+        <p><%= post_comment.content %></p>
+      </div>
       <% if post_comment.user == current_user %>
       <div>
         <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true do %>
