@@ -21,11 +21,7 @@
             </div>
             <!--投稿画像と内容-->
             <div class="post-contents-index">
-            	<%#= render 'posts/contents', post: post %>
-            	<%= link_to post_path(post), class: "post-content" do %>
-                	<p><%= attachment_image_tag(post, :post_image, size: "500", class: "img") %></p>
-                	<p class="post-text mt-3 ml-3"><%= truncate(post.content, length: 300) %></p>
-              <% end %>
+            	<%= render 'posts/contents', post: post %>
             </div>
             <!--あいこんぼたん-->
             <div>
