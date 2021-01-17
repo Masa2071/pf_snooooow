@@ -1,5 +1,3 @@
-# README
-
 # SNoooooW!!
 
 ## サイト概要
