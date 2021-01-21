@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_022421) do
+ActiveRecord::Schema.define(version: 2021_01_21_042452) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 2021_01_14_022421) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", default: ""
+    t.string "name", default: "名無し"
     t.integer "style", default: 0, null: false
     t.date "birthday"
     t.integer "sex", default: 0, null: false
