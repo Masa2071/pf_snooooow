@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_21_090111) do
+ActiveRecord::Schema.define(version: 2021_01_21_132912) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_090111) do
     t.datetime "remember_created_at"
     t.string "name", default: "名無し"
     t.integer "style", default: 0, null: false
-    t.date "birthday"
+    t.date "birthday", default: "1997-01-01"
     t.integer "sex", default: 0, null: false
     t.string "profile_image_id"
     t.text "introduction"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_090111) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.boolean "is_delete", default: false
+    t.string "public_uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
