@@ -91,5 +91,3 @@ end
 gem 'ransack'
 
 gem 'data-confirm-modal' #alart変更
-
-gem 'public_uid'
