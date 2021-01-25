@@ -15,10 +15,10 @@
       <span class="ml-3 font-s"><%= @user.birthday %>歳</span>
       <span class="ml-2 font-s"><%= @user.sex %></span>
       <span class="font-s last-sign-in">
-        <%# if current_user == @user %>
+        <%# if @user.logged_in?(@user) %>
           <!--<i class="fas fa-circle" style="color: green;"></i>ログイン中-->
         <%# else %>
-          <i class="fas fa-circle" style="color: red;"></i><%= time_ago_in_words(@user.last_sign_in_at) %>前
+          <i class="fas fa-circle" style="color: red;"></i><%= time_ago_in_words(@user.current_sign_in_at) %>前
         <%# end %>
       </span>
     </div>

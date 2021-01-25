@@ -14,7 +14,7 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     @users = user.followings
     @followerusers = user.followers
-    @userall = User.order(last_sign_in_at: :DESC).limit(16).where.not(id: @users)
+    @userall = User.order(current_sign_in_at: :DESC).limit(16).where.not(id: @users)
     @current_user = current_user
     @search = User.ransack(params[:q]) #ransack
     @searchusers = @search.result(distinct: true)
@@ -31,7 +31,7 @@ class RelationshipsController < ApplicationController
     @users = user.followers
     @followusers = user.followings
     @current_user = current_user
-    @userall = User.order(last_sign_in_at: :DESC).limit(16).where.not(id: @followusers)
+    @userall = User.order(current_sign_in_at: :DESC).limit(16).where.not(id: @followusers)
     @search = User.ransack(params[:q]) #ransack
     @searchusers = @search.result(distinct: true)
     @searchusers =

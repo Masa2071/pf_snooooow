@@ -25,7 +25,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { in: 2..8 }, on: :update
 
-
   def follow(user_id) #フォローする
     relationships.create(followed_id: user_id)
   end
