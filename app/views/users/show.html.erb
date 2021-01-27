@@ -25,18 +25,13 @@
 
     <div class="follow-form">
     <% if current_user != @user %>
-
-       <% if current_user.following?(@user) %>
-        <%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-secondary mt-3" %>
-      <% else %>
-        <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn btn-outline-success mt-3" %>
-      <% end %>
-    <%= render '/users/chat', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
-      <% else %>
+      <%= render '/users/chat', user: @user, isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry %>
+      <span id="bottons_<%= @user.id %>"><%= render 'layouts/follow', user: @user %></span>
+    <% else %>
       <%= link_to edit_user_path(@user) do %>
         <i class="fas fa-user-cog mt-3">プロフィール編集</i>
       <%= link_to "退会", users_hide_path(current_user), method: :put, data:
-      {confirm:  '一度退会するとデータは戻りません。</br>本当に退会しますか?', cancel: 'キャンセル', commit: '退会'}, title: '退会確認', class: "btn btn-outline-danger" %>
+      {confirm:  '一度退会するとデータは戻りません。</br>本当に退会しますか?', cancel: 'キャンセル', commit: '退会'}, title: '退会確認', class: "btn btn-outline-danger follow-btn" %>
       <% end %>
     <% end %>
     </div>
