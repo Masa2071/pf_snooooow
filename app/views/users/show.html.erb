@@ -30,7 +30,7 @@
     <% else %>
       <%= link_to edit_user_path(@user) do %>
         <i class="fas fa-user-cog mt-3">プロフィール編集</i>
-      <%= link_to "退会", users_hide_path(current_user), method: :put, data:
+      <%= link_to "退会にゃ", users_hide_path(current_user), method: :put, data:
       {confirm:  '一度退会するとデータは戻りません。</br>本当に退会しますか?', cancel: 'キャンセル', commit: '退会'}, title: '退会確認', class: "btn btn-outline-danger follow-btn" %>
       <% end %>
     <% end %>
