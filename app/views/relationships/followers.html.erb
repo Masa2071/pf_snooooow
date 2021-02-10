@@ -7,19 +7,19 @@
     </div>
   </div>
   <div class="col-sm-6 main py-4">
-    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+    <ul class="nav nav-tabs nav-fill">
       <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">フォロワー</a>
+        <a class="nav-link active" data-toggle="tab" href="#follower">フォロワー</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">フォロー中</a>
+        <a href="#following" class="nav-link" data-toggle="tab">フォロー中</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">おすすめユーザー</a>
+        <a href="#recommended" class="nav-link" data-toggle="tab">おすすめユーザー</a>
       </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-content">
+      <div class="tab-pane active" id="follower">
         <% if @users.exists? %>
         <!--<#% binding.pry %>-->
           <%= render 'relationships/index', users: @users %>
@@ -27,14 +27,14 @@
           <p class="mt-4">ユーザーはいません</p>
         <% end %>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane" id="following">
         <% if @followusers.exists? %>
           <%= render 'relationships/index', users: @followusers %>
         <% else %>
           <p class="mt-4">ユーザーはいません</p>
         <% end %>
       </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="tab-pane" id="recommended">
           <%= render 'relationships/latest_user', userall: @userall %>
       </div>
     </div>
