@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="col-sm-9 main pt-5">
-    <h3 class="page-title text-center py-2 mb-4"><i class="far fa-envelope"></i>メッセージ一覧</h3>
+    <h3 class="page-title text-center py-2 mb-4 comment-form"><i class="far fa-envelope"></i>メッセージ一覧</h3>
     <% @anotherEntries.each do |e| %>
       <div class="profile-index">
         <%= link_to user_path(e.user.id), class: "btn" do %>

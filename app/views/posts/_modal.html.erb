@@ -1,21 +1,26 @@
 <!-- モーダルの設定 -->
-<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+<div class="modal fade mt-5" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5>投稿する</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+      <div class="modal-header py-0">
+        <div>
+          <%= link_to user_path(current_user), class: "btn left-btn" do %>
+            <%= attachment_image_tag current_user, :profile_image, size: "50x50", fallback: 'no_image.jpg', format: 'jpeg',  class: "rounded-circle" %>
+            <span><%= current_user.name %></span>
+          <% end %>
+        </div>
+        <button type="button" class="close py-4" data-dismiss="modal" aria-label="閉じる">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <%= form_with model: post, remote: true do |f| %>
       <div class="modal-body">
         <%= render "layouts/errors", model: post %>
-        <%= f.text_area :content, placeholder: "入力してください", class: "textarea" %>
+        <%= f.text_area :content, placeholder: "今何してる？", class: "textarea" %>
       </div>
       <div class="modal-footer">
         <%= f.label :post_image do %>
-        <i class="fas fa-camera"></i>
+        <i class="fas fa-camera mr-3"></i>
         <% end %>
         <%= f.attachment_field :post_image, class: "image-camera" %>
         <%= f.submit('投稿', class: "btn  btn-outline-primary post-btn rounded-pill") %>

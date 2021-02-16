@@ -51,3 +51,10 @@
   /* widthを100%にしておくことで、レスポンシブ対応ができます。 */
   width: 100%;
 }
+
+nav.pagination {
+  display: none;
+}
+.scroll-list {
+  padding: 0;
+}

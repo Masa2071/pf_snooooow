@@ -14,9 +14,9 @@
     <h3 class="page-title text-center py-2 comment-form"><i class="fas fa-home"></i>ホーム</h3>
     <span class="font-s flash-error"><%= flash[:alert] %></span>
     <!--投稿フォーム-->
-    <%= render '/posts/modal', post: @post %>
+    <%= render '/posts/modal', post: @post, current_user: @current_user %>
     <%= render '/posts/form', post: @post %>
-    <div class="posts">
+    <div class="posts scroll-list jscroll">
       <!--投稿一覧-->
         <% @posts.each do |post| %>
           <div class="post-index_<%= post.id %>">
@@ -37,6 +37,11 @@
   <hr>
           </div>
         <% end %>
+        <%= paginate @posts %>
+        <%#= link_to_prev_page @posts, '前のページ', class: "prev" %>
+        <%#= link_to_next_page @posts, '次のページ', class: "next" %>
+
+
     </div>
   </div>
 </div>

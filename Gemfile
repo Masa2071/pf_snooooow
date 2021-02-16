@@ -88,6 +88,8 @@ group :production do
   gem 'mysql2'
 end
 
-gem 'ransack'
+gem 'ransack' #検索
 
 gem 'data-confirm-modal' #alart変更
+
+gem 'kaminari'
