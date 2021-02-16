@@ -1,0 +1,26 @@
+<!-- モーダルの設定 -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>投稿する</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with model: post, remote: true do |f| %>
+      <div class="modal-body">
+        <%= render "layouts/errors", model: post %>
+        <%= f.text_area :content, placeholder: "入力してください", class: "textarea" %>
+      </div>
+      <div class="modal-footer">
+        <%= f.label :post_image do %>
+        <i class="fas fa-camera"></i>
+        <% end %>
+        <%= f.attachment_field :post_image, class: "image-camera" %>
+        <%= f.submit('投稿', class: "btn  btn-outline-primary post-btn rounded-pill") %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
