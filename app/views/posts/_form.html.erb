@@ -1,11 +1,15 @@
 <div class="py-3 mb-4">
   <%= form_with model: post, remote: true do |f| %>
     <%= render "layouts/errors", model: post %>
-    <%= f.label :post_image do %>
-    <i class="fas fa-camera"></i>
-    <% end %>
-    <%= f.attachment_field :post_image, class: "image-camera" %>
-    <%= f.text_area :content, placeholder: "入力してください", class: 'content' %>
+    <div class="image_wrapper">
+      <div class="item_image_btn">
+        <%= f.attachment_field :post_image, id: "file" %>
+      </div>
+      <div id="img_field" onClick="$('#file').click()" >
+        <i class="fas fa-camera"></i>
+      </div>
+    </div>
+    <%= f.text_area :content, placeholder: "今何してる？", class: 'content' %>
   <div class="text-right mt-3 pb-2">
     <%= f.submit('投稿', class: "btn  btn-outline-primary post-btn rounded-pill") %>
   </div>

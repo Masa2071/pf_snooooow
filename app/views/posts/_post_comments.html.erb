@@ -8,7 +8,7 @@
     </div>
     <div>
       <div id="post-comment-form">
-        <p class="text-center mt-3"><%= attachment_image_tag post_comment, :image, size: "180", format: 'jpeg', class: "img" %></p>
+        <p class="text-center mt-3"><%= attachment_image_tag post_comment, :image, size: "250", format: 'jpeg', class: "img img-fluid" %></p>
         <p><%= post_comment.content %></p>
       </div>
       <% if post_comment.user == current_user %>

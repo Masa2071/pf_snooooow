@@ -3,7 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .image-camera {
-  display: none;
+  input {
+    display: none;
+  }
+
 }
 
 .content {
@@ -48,7 +51,7 @@
   resize: none;
   /* フォーカスした際の青い枠線を消す */
   outline: none;
-  /* widthを100%にしておくことで、レスポンシブ対応ができます。 */
+  /* widthを100%にしておくことで、レスポンシブ対応。 */
   width: 100%;
 }
 
@@ -57,4 +60,8 @@ nav.pagination {
 }
 .scroll-list {
   padding: 0;
+}
+
+.item_image_btn {
+  display: none;
 }
