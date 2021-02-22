@@ -65,13 +65,6 @@ ActiveRecord::Schema.define(version: 2021_01_21_132912) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "participations", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "post_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
@@ -133,7 +126,6 @@ ActiveRecord::Schema.define(version: 2021_01_21_132912) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.boolean "is_delete", default: false
-    t.string "public_uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
