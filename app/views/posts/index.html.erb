@@ -1,21 +1,23 @@
 <div class="row">
+   <!--サイドバー-->
   <div class="col-sm-3 left-line">
     <%= render "devise/shared/back" %>
     <div class="side-bar">
       <%= render "devise/shared/side_links" %>
-      <!--モーダル発火-->
+      <!--モーダル-->
       <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#Modal">
         投稿する
       </button>
       <%= render "devise/shared/my_profile", current_user: @current_user %>
     </div>
   </div>
+  <!--メイン-->
   <div class="col-sm-9 main py-4">
     <h3 class="page-title text-center py-2 comment-form"><i class="fas fa-home"></i>ホーム</h3>
     <span class="font-s flash-error"><%= flash[:alert] %></span>
     <!--投稿フォーム-->
-    <%= render '/posts/modal', post: @post, current_user: @current_user %>
-    <%= render '/posts/form', post: @post %>
+    <%= render '/posts/modal', post: @post, current_user: @current_user %><!--モーダル-->
+    <%= render '/posts/form', post: @post %><!--一覧フォーム-->
     <div class="posts scroll-list jscroll">
       <!--投稿一覧-->
         <% @posts.each do |post| %>
